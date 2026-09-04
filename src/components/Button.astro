@@ -5,9 +5,17 @@ interface Props {
   href?: string;
   fullWidth?: boolean;
   type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
 }
 
-const { variant = 'primary', size = 'md', href, fullWidth = false, type = 'button' } = Astro.props;
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  fullWidth = false,
+  type = 'button',
+  disabled = false,
+} = Astro.props;
 
 const classes = `e30-btn e30-btn--${size} e30-btn--${variant}${fullWidth ? ' w-full' : ''}`;
 ---
@@ -18,7 +26,7 @@ const classes = `e30-btn e30-btn--${size} e30-btn--${variant}${fullWidth ? ' w-f
       <slot />
     </a>
   ) : (
-    <button type={type} class={classes}>
+    <button type={type} class={classes} disabled={disabled}>
       <slot />
     </button>
   )
