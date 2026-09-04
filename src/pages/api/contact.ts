@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { z } from 'astro/zod';
 import { requireEnv } from '../../lib/env';
+import { getApps } from '../../lib/collections';
 
 export const prerender = false;
 
@@ -8,15 +9,20 @@ const TURNSTILE_VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/sit
 const RESEND_URL = 'https://api.resend.com/emails';
 const FROM_ADDRESS = 'Eleven30 site <noreply@eleven30.xyz>';
 
-// Keep in sync with the app slugs in src/content/apps/*.md.
-const APP_SLUGS = ['launch-window', 'rachels-tip-calculator'] as const;
-
-const contactSchema = z.object({
-  name: z.string().trim().min(1).max(80),
-  email: z.email().max(254),
-  message: z.string().trim().min(1).max(5000),
-  app: z.enum([...APP_SLUGS, 'other']).optional(),
-});
+// Allowed app slugs are derived from the content collection at request time
+// (rather than a hardcoded literal) so adding an app is a content-only
+// change end-to-end — see src/pages/contact.astro's dropdown, which is built
+// the same way.
+async function getContactSchema() {
+  const apps = await getApps();
+  const appSlugs = [...apps.map((app) => app.id), 'other'];
+  return z.object({
+    name: z.string().trim().min(1).max(80),
+    email: z.email().max(254),
+    message: z.string().trim().min(1).max(5000),
+    app: z.enum(appSlugs).optional(),
+  });
+}
 
 function json(status: number, body: Record<string, unknown>): Response {
   return new Response(JSON.stringify(body), {
@@ -75,6 +81,7 @@ export const POST: APIRoute = async ({ request }) => {
     return challengeFailed();
   }
 
+  const contactSchema = await getContactSchema();
   const parsed = contactSchema.safeParse(body);
   if (!parsed.success) {
     return invalid();

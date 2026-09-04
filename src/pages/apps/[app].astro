@@ -6,7 +6,7 @@ import Badge from '../../components/Badge.astro';
 import Icon from '../../components/Icon.astro';
 import Button from '../../components/Button.astro';
 import PlaceholderMedia from '../../components/PlaceholderMedia.astro';
-import { getApps, type AppEntry } from '../../lib/collections';
+import { getApps, STATUS_META, PLATFORM_LABELS, type AppEntry } from '../../lib/collections';
 import { APP_BODIES } from '../../components/apps';
 
 export async function getStaticPaths() {
@@ -19,24 +19,6 @@ interface Props {
 }
 
 const { app } = Astro.props;
-
-/**
- * Status → Badge tone + human label. Duplicated from `AppCard.astro`'s
- * three-line mapping rather than exported/shared: two copies of a map this
- * small is a defensible trade against the extra indirection of a shared
- * export (see Task 17 notes).
- */
-const STATUS_META: Record<AppEntry['data']['status'], { tone: 'safe' | 'info'; label: string }> = {
-  released: { tone: 'safe', label: 'On the App Store' },
-  development: { tone: 'info', label: 'In development' },
-  beta: { tone: 'info', label: 'Beta' },
-};
-
-const PLATFORM_LABELS: Record<AppEntry['data']['platforms'][number], string> = {
-  ios: 'iOS',
-  android: 'Android',
-  web: 'Web',
-};
 
 const CAPTION_STATUS: Record<AppEntry['data']['status'], string> = {
   development: 'in development',

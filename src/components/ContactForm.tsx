@@ -31,16 +31,21 @@ export default function ContactForm({ siteKey, appOptions }: Props) {
   const [website, setWebsite] = useState(''); // honeypot — real visitors never fill this
   const [token, setToken] = useState<string | null>(null);
   const [status, setStatus] = useState<Status>('idle');
+  const [turnstileError, setTurnstileError] = useState(false);
 
   const turnstileContainerRef = useRef<HTMLDivElement | null>(null);
   const widgetIdRef = useRef<string | undefined>(undefined);
 
   // Explicit rendering: the Turnstile script may still be loading when this
   // effect runs, so poll for `window.turnstile` rather than assuming it's
-  // already there.
+  // already there. Give up after ~10s (ad-blocker, CSP, network failure) so
+  // the button doesn't sit silently, permanently disabled with no
+  // explanation.
   useEffect(() => {
     let cancelled = false;
     let pollId: ReturnType<typeof setTimeout> | undefined;
+    const startedAt = Date.now();
+    const POLL_TIMEOUT_MS = 10_000;
 
     function tryRender() {
       if (cancelled) return;
@@ -49,6 +54,8 @@ export default function ContactForm({ siteKey, appOptions }: Props) {
           sitekey: siteKey,
           callback: (t) => setToken(t),
         });
+      } else if (Date.now() - startedAt >= POLL_TIMEOUT_MS) {
+        setTurnstileError(true);
       } else {
         pollId = setTimeout(tryRender, 100);
       }
@@ -212,6 +219,12 @@ export default function ContactForm({ siteKey, appOptions }: Props) {
       </div>
 
       <div ref={turnstileContainerRef} />
+
+      {turnstileError && (
+        <p role="alert" className="text-caption text-fg-critical">
+          Couldn't load the verification widget — try reloading the page, or email {SITE.contactEmail} directly.
+        </p>
+      )}
 
       <button
         type="submit"

@@ -1,8 +1,18 @@
 ---
 import PolicyLayout from '../../../layouts/PolicyLayout.astro';
-import { getApps, getPolicyForApp, type AppEntry, type PolicyEntry } from '../../../lib/collections';
+import {
+  getApps,
+  getPolicyForApp,
+  assertPolicyCoverage,
+  type AppEntry,
+  type PolicyEntry,
+} from '../../../lib/collections';
 
 export async function getStaticPaths() {
+  // Deliberately redundant with the call in src/pages/apps/index.astro: the
+  // orphan-policy half of the invariant should be guaranteed by two
+  // independent, always-built routes, not droppable from a single call site.
+  await assertPolicyCoverage();
   const apps = await getApps();
   return Promise.all(
     apps.map(async (app) => ({

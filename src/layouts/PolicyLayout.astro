@@ -3,6 +3,7 @@ import { render } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import Prose from '../components/Prose.astro';
 import { SITE } from '../config/site';
+import { formatDate } from '../lib/blog';
 import type { AppEntry, PolicyEntry } from '../lib/collections';
 
 interface Props {
@@ -15,11 +16,6 @@ const { Content } = await render(policy);
 
 const path = `/apps/${app.id}/privacy/`;
 const description = `Privacy policy for ${app.data.name}: what the app collects, why, and how to reach me with questions.`;
-
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-function formatDate(date: Date): string {
-  return `${date.getUTCDate()} ${MONTHS[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
-}
 
 const lastUpdated = formatDate(policy.data.lastUpdated);
 ---

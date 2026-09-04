@@ -1,5 +1,6 @@
 ---
 import Wordmark from './Wordmark.astro';
+import { getApps } from '../lib/collections';
 
 interface FooterLink {
   label: string;
@@ -11,12 +12,13 @@ interface FooterColumn {
   links: FooterLink[];
 }
 
+const apps = await getApps();
+
 const footerColumns: FooterColumn[] = [
   {
     title: 'Apps',
     links: [
-      { label: 'Launch Window', href: '/apps/launch-window/' },
-      { label: "Rachel's Tip Calculator", href: '/apps/rachels-tip-calculator/' },
+      ...apps.map((app) => ({ label: app.data.name, href: `/apps/${app.id}/` })),
       { label: 'Release notes', href: '/changelog/' },
     ],
   },

@@ -72,7 +72,8 @@
 
   .e30-btn:active { transform: scale(var(--press-scale)); }
 
-  .e30-btn:disabled {
+  .e30-btn:disabled,
+  .e30-btn[aria-disabled="true"] {
     background: var(--bg-sunken);
     color: var(--text-disabled);
     border-color: transparent;

@@ -15,3 +15,10 @@ export function readingTime(body: string): string {
   const minutes = Math.max(1, Math.round(words / 200));
   return `${minutes} min read`;
 }
+
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+/** "28 Aug 2026" — deliberately not locale-dependent, per plan step 4. */
+export function formatDate(date: Date): string {
+  return `${date.getUTCDate()} ${MONTHS[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
+}

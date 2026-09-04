@@ -3,7 +3,7 @@ import { render, type CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import Prose from '../components/Prose.astro';
 import Button from '../components/Button.astro';
-import { readingTime } from '../lib/blog';
+import { readingTime, formatDate } from '../lib/blog';
 import { SITE } from '../config/site';
 
 interface Props {
@@ -15,11 +15,6 @@ const { Content } = await render(post);
 
 const path = `/blog/${post.id}/`;
 const canonicalHref = new URL(path, Astro.site).href;
-
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-function formatDate(date: Date): string {
-  return `${date.getUTCDate()} ${MONTHS[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
-}
 
 const date = formatDate(post.data.pubDate);
 const read = readingTime(post.body ?? '');

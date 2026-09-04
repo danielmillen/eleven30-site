@@ -3,6 +3,20 @@ import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
 export type AppEntry = CollectionEntry<'apps'>;
 export type PolicyEntry = CollectionEntry<'policies'>;
 
+/** Status → Badge tone + human label. Shared by AppCard.astro and [app].astro. */
+export const STATUS_META: Record<AppEntry['data']['status'], { tone: 'safe' | 'info'; label: string }> = {
+  released: { tone: 'safe', label: 'On the App Store' },
+  development: { tone: 'info', label: 'In development' },
+  beta: { tone: 'info', label: 'Beta' },
+};
+
+/** Platform → human label. Shared by AppCard.astro and [app].astro. */
+export const PLATFORM_LABELS: Record<AppEntry['data']['platforms'][number], string> = {
+  ios: 'iOS',
+  android: 'Android',
+  web: 'Web',
+};
+
 /** Apps in display order: `order` ascending, then `name` ascending. */
 export async function getApps(): Promise<AppEntry[]> {
   const apps = await getCollection('apps');

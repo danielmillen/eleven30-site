@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { readingTime } from '../lib/blog';
+import { readingTime, formatDate } from '../lib/blog';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -8,13 +8,6 @@ interface Props {
 }
 
 const { post, dense = false } = Astro.props;
-
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-/** "28 Aug 2026" — deliberately not locale-dependent, per plan step 4. */
-function formatDate(date: Date): string {
-  return `${date.getUTCDate()} ${MONTHS[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
-}
 
 const href = `/blog/${post.id}/`;
 const date = formatDate(post.data.pubDate);

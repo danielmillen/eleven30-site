@@ -21,7 +21,14 @@ const classes = `e30-btn e30-btn--${size} e30-btn--${variant}${fullWidth ? ' w-f
 ---
 
 {
-  href ? (
+  href && disabled ? (
+    // Anchors can't be natively disabled — a disabled-looking `<a href>`
+    // would still be fully clickable/focusable, so fall back to a `<span>`
+    // instead of rendering a real link.
+    <span class={classes} aria-disabled="true">
+      <slot />
+    </span>
+  ) : href ? (
     <a class={classes} href={href}>
       <slot />
     </a>
