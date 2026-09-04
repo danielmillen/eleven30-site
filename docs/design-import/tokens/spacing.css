@@ -1,0 +1,30 @@
+:root {
+  --space-0: 0px;
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 8px;
+  --space-4: 12px;
+  --space-5: 16px;
+  --space-6: 20px;
+  --space-7: 24px;
+  --space-8: 32px;
+  --space-9: 40px;
+  --space-10: 48px;
+  --space-11: 64px;
+  --space-12: 80px;
+  --space-13: 96px;
+  --space-14: 128px;
+
+  /* Layout */
+  --gutter-mobile: 20px;
+  --gutter-web: 32px;
+  --measure-prose: 64ch;
+  --container-max: 1200px;
+  --container-narrow: 720px;
+
+  /* Controls — 44px is the floor, always */
+  --control-h-sm: 36px;
+  --control-h-md: 44px;
+  --control-h-lg: 52px;
+  --tap-min: 44px;
+}

@@ -1,0 +1,76 @@
+/* Light is declared explicitly, not just as the :root default, so a light
+   surface can sit inside a dark host (or vice versa) and win. Any element
+   carrying data-theme="light" re-asserts the full light token set for its
+   subtree. Generated from the same value expressions as tokens/colors.css. */
+[data-theme="light"] {
+  --bg-page: var(--paper);
+  --bg-sunken: var(--ink-050);
+  --bg-surface: var(--white);
+  --bg-raised: var(--white);
+  --bg-inverse: var(--ink-900);
+  --bg-accent-subtle: var(--accent-100);
+  --bg-accent-tint: var(--accent-050);
+  --bg-accent-deep: var(--accent-800);
+  --bg-accent-bold: var(--accent-600);
+  --bg-accent: var(--accent-600);
+  --bg-track: var(--ink-100);
+  --bg-safe-subtle: var(--green-100);
+  --bg-caution-subtle: var(--amber-100);
+  --bg-critical-subtle: var(--clay-100);
+  --bg-info-subtle: var(--slate-100);
+
+  --text-primary: var(--ink-900);
+  --text-secondary: var(--ink-600);
+  --text-tertiary: var(--ink-500);
+  --text-disabled: var(--ink-400);
+  --text-inverse: var(--paper);
+  --text-accent: var(--accent-700);
+  --text-safe: var(--green-700);
+  --text-caution: var(--amber-700);
+  --text-critical: var(--clay-700);
+  --text-link: var(--accent-700);
+  --text-link-hover: var(--accent-500);
+  --text-on-ground: var(--paper);
+
+  --border-hairline: var(--ink-200);
+  --border-strong: var(--ink-300);
+  --border-accent-subtle: var(--accent-200);
+  --border-caution: var(--amber-200);
+  --border-accent: var(--accent-600);
+  --border-focus: var(--accent-500);
+  --accent-hover: var(--accent-500);
+  --accent-press: var(--accent-700);
+
+  --icon-default: var(--ink-600);
+  --icon-muted: var(--ink-400);
+  --icon-accent: var(--accent-600);
+
+  --state-safe: var(--green-600);
+  --state-tight: var(--amber-600);
+  --state-over: var(--clay-600);
+
+  --shadow-sm: 0 1px 2px rgba(15, 20, 19, 0.05), 0 1px 1px rgba(15, 20, 19, 0.03);
+  --shadow-md: 0 2px 4px rgba(15, 20, 19, 0.05), 0 6px 16px -6px rgba(15, 20, 19, 0.08);
+  --shadow-lg: 0 1px 2px rgba(15, 20, 19, 0.04), 0 16px 40px -12px rgba(15, 20, 19, 0.14);
+  --ring-focus: 0 0 0 3px rgba(18, 134, 106, 0.28);
+}
+
+/* A [data-accent] scope nested under a light scope: restate the light accent
+   steps so a dark host above cannot leak its 300/400 corrections down. */
+[data-theme="light"] [data-accent],
+[data-theme="light"][data-accent] {
+  --text-accent: var(--accent-700);
+  --text-link: var(--accent-700);
+  --text-link-hover: var(--accent-500);
+  --text-on-accent: var(--accent-on-fill);
+  --bg-accent: var(--accent-600);
+  --bg-accent-bold: var(--accent-600);
+  --bg-accent-subtle: var(--accent-100);
+  --bg-accent-tint: var(--accent-050);
+  --border-accent-subtle: var(--accent-200);
+  --border-accent: var(--accent-600);
+  --border-focus: var(--accent-500);
+  --icon-accent: var(--accent-600);
+  --accent-hover: var(--accent-500);
+  --accent-press: var(--accent-700);
+}

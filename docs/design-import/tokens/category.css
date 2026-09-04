@@ -1,0 +1,39 @@
+:root {
+  /* rose and blue are category-only hues; they exist for payee colour, never for UI. */
+  --rose-600: #A8476E;
+  --rose-100: #FBE9EF;
+  --blue-600: #2F5AA8;
+  --blue-100: #E9EFFB;
+
+  --cat-green-bg: var(--green-100);   --cat-green-fg: var(--green-700);
+  --cat-amber-bg: var(--amber-100);   --cat-amber-fg: var(--amber-700);
+  --cat-clay-bg: var(--clay-100);     --cat-clay-fg: var(--clay-700);
+  --cat-teal-bg: var(--slate-100);    --cat-teal-fg: var(--slate-700);
+  --cat-iris-bg: var(--iris-100);     --cat-iris-fg: var(--iris-700);
+  --cat-rose-bg: var(--rose-100);     --cat-rose-fg: var(--rose-600);
+  --cat-blue-bg: var(--blue-100);     --cat-blue-fg: var(--blue-600);
+  --cat-slate-bg: var(--ink-100);     --cat-slate-fg: var(--ink-600);
+}
+
+[data-theme="dark"] {
+  --cat-green-bg: #0E2620;            --cat-green-fg: var(--green-300);
+  --cat-amber-bg: #2A2013;            --cat-amber-fg: var(--amber-300);
+  --cat-clay-bg: #2B1714;             --cat-clay-fg: var(--clay-300);
+  --cat-teal-bg: #10222C;             --cat-teal-fg: var(--slate-300);
+  --cat-iris-bg: #1D1630;             --cat-iris-fg: var(--iris-300);
+  --cat-rose-bg: #2C1620;             --cat-rose-fg: #E4A0BC;
+  --cat-blue-bg: #141F33;             --cat-blue-fg: #9AB4E0;
+  --cat-slate-bg: rgba(237,241,236,.10); --cat-slate-fg: #A7B0AC;
+}
+
+/* Restated so a light subtree inside a dark host keeps light category chips. */
+[data-theme="light"] {
+  --cat-green-bg: var(--green-100);   --cat-green-fg: var(--green-700);
+  --cat-amber-bg: var(--amber-100);   --cat-amber-fg: var(--amber-700);
+  --cat-clay-bg: var(--clay-100);     --cat-clay-fg: var(--clay-700);
+  --cat-teal-bg: var(--slate-100);    --cat-teal-fg: var(--slate-700);
+  --cat-iris-bg: var(--iris-100);     --cat-iris-fg: var(--iris-700);
+  --cat-rose-bg: var(--rose-100);     --cat-rose-fg: var(--rose-600);
+  --cat-blue-bg: var(--blue-100);     --cat-blue-fg: var(--blue-600);
+  --cat-slate-bg: var(--ink-100);     --cat-slate-fg: var(--ink-600);
+}
