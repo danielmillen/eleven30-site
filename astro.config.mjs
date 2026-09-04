@@ -13,7 +13,7 @@ export default defineConfig({
   session: false,
   prerenderConflictBehavior: 'error',
   adapter: cloudflare(),
-  integrations: [react(), sitemap()],
+  integrations: [react(), sitemap({ filter: (page) => !page.includes('/api/') })],
   vite: { plugins: [tailwindcss()] },
   fonts: [
     { provider: fontProviders.google(), name: 'Instrument Sans',  cssVariable: '--font-instrument-sans',  weights: ['400 700'], styles: ['normal', 'italic'], subsets: ['latin'] },
