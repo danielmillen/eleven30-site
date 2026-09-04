@@ -1,0 +1,182 @@
+/* Component-layer CSS — the six design-system primitives.
+   Tailwind utilities carry layout, spacing and type everywhere else; this
+   block exists only because component-spec.md defines these as token-driven
+   recipes with hover/press/disabled/invalid states that would otherwise be
+   repeated (and drift) on every call site. Every declaration below traces to
+   a line in docs/design-import/component-spec.md. */
+
+@layer components {
+  /* ============================== Button ============================== */
+
+  .e30-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    border-radius: var(--radius-md);
+    font-weight: var(--weight-medium);
+    letter-spacing: -0.004em;
+    white-space: nowrap;
+    transition: transform var(--dur-instant) var(--ease-standard);
+  }
+
+  .e30-btn--sm {
+    height: var(--control-h-sm);
+    padding: 0 14px;
+    font-size: var(--text-label);
+  }
+
+  .e30-btn--md {
+    height: var(--control-h-md);
+    padding: 0 18px;
+    font-size: var(--text-label);
+  }
+
+  .e30-btn--lg {
+    height: var(--control-h-lg);
+    padding: 0 22px;
+    font-size: var(--text-body);
+  }
+
+  .e30-btn--primary {
+    background: var(--bg-accent);
+    color: var(--text-on-accent);
+    border: none;
+  }
+  .e30-btn--primary:hover { background: var(--accent-hover); }
+  .e30-btn--primary:active { background: var(--accent-press); }
+
+  .e30-btn--secondary {
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border-strong);
+  }
+  .e30-btn--secondary:hover { background: var(--ink-050); }
+  .e30-btn--secondary:active { background: var(--ink-100); }
+
+  .e30-btn--ghost {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid transparent;
+  }
+  .e30-btn--ghost:hover { background: var(--ink-050); }
+  .e30-btn--ghost:active { background: var(--ink-100); }
+
+  .e30-btn--critical {
+    background: var(--clay-600);
+    color: var(--paper);
+    border: none;
+  }
+  .e30-btn--critical:hover { background: var(--clay-500); }
+  .e30-btn--critical:active { background: var(--clay-700); }
+
+  .e30-btn:active { transform: scale(var(--press-scale)); }
+
+  .e30-btn:disabled {
+    background: var(--bg-sunken);
+    color: var(--text-disabled);
+    border-color: transparent;
+    cursor: not-allowed;
+  }
+
+  /* =============================== Card ================================ */
+
+  .e30-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-hairline);
+  }
+
+  .e30-card--subtle {
+    background: var(--bg-sunken);
+    border: 1px solid var(--border-hairline);
+    box-shadow: none;
+  }
+
+  .e30-card--accent {
+    background: var(--bg-accent-subtle);
+    border: 1px solid var(--accent-200);
+  }
+
+  .e30-card--bold {
+    background: var(--bg-accent-bold);
+    border: none;
+    color: var(--text-on-accent);
+  }
+
+  .e30-card--deep {
+    background: var(--bg-accent-deep);
+    border: none;
+    color: var(--text-on-ground);
+  }
+
+  .e30-card--inverse {
+    background: var(--bg-inverse);
+    border: none;
+    color: var(--text-inverse);
+  }
+
+  .e30-card--interactive:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* =============================== Badge ================================ */
+
+  .e30-badge {
+    height: 24px;
+    padding: 0 var(--space-3);
+    border-radius: var(--radius-full);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-data);
+    font-size: var(--text-micro);
+    letter-spacing: var(--ls-micro);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .e30-badge--neutral { background: var(--ink-100); color: var(--text-secondary); }
+  .e30-badge--accent { background: var(--bg-accent-subtle); color: var(--text-accent); }
+  .e30-badge--safe { background: var(--green-100); color: var(--green-800); }
+  .e30-badge--tight { background: var(--amber-100); color: var(--amber-800); }
+  .e30-badge--over { background: var(--clay-100); color: var(--clay-800); }
+  .e30-badge--info { background: var(--slate-100); color: var(--slate-800); }
+  .e30-badge--bold { background: var(--bg-accent-bold); color: var(--text-on-accent); }
+
+  /* =============================== Field ================================ */
+
+  .e30-field {
+    height: var(--control-h-md);
+    padding: 0 var(--space-4);
+    border-radius: var(--radius-md);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-hairline);
+    font-size: var(--text-body);
+  }
+
+  .e30-field:focus {
+    border-color: var(--border-focus);
+    box-shadow: var(--ring-focus);
+  }
+
+  .e30-field:disabled {
+    background: var(--bg-sunken);
+  }
+
+  .e30-field[aria-invalid="true"] {
+    border-color: var(--clay-600);
+  }
+
+  /* ============================== Shot (placeholder) ==================== */
+
+  .e30-shot {
+    border: 1px dashed var(--border-strong);
+    background: var(--bg-sunken);
+  }
+}
