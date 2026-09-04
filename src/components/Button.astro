@@ -1,0 +1,25 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost' | 'critical';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  fullWidth?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+}
+
+const { variant = 'primary', size = 'md', href, fullWidth = false, type = 'button' } = Astro.props;
+
+const classes = `e30-btn e30-btn--${size} e30-btn--${variant}${fullWidth ? ' w-full' : ''}`;
+---
+
+{
+  href ? (
+    <a class={classes} href={href}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class={classes}>
+      <slot />
+    </button>
+  )
+}

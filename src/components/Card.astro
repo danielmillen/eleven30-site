@@ -1,0 +1,26 @@
+---
+interface Props {
+  tone?: 'default' | 'subtle' | 'accent' | 'bold' | 'deep' | 'inverse';
+  padding?: 'none' | 'sm' | 'md' | 'lg';
+  interactive?: boolean;
+  href?: string; // required when interactive is true
+}
+
+const { tone = 'default', padding = 'md', interactive = false, href } = Astro.props;
+
+const paddingClass = { none: 'p-0', sm: 'p-4', md: 'p-5', lg: 'p-6' }[padding];
+const toneClass = tone === 'default' ? '' : ` e30-card--${tone}`;
+const classes = `e30-card${toneClass} ${paddingClass}${interactive ? ' e30-card--interactive' : ''}`;
+---
+
+{
+  interactive ? (
+    <a class={classes} href={href}>
+      <slot />
+    </a>
+  ) : (
+    <div class={classes}>
+      <slot />
+    </div>
+  )
+}

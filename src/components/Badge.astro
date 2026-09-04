@@ -1,0 +1,9 @@
+---
+interface Props {
+  tone: 'neutral' | 'accent' | 'safe' | 'tight' | 'over' | 'info' | 'bold';
+}
+
+const { tone } = Astro.props;
+---
+
+<span class={`e30-badge e30-badge--${tone}`}><slot /></span>
