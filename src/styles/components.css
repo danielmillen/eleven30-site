@@ -90,6 +90,7 @@
     box-shadow: var(--shadow-sm);
     background: var(--bg-surface);
     border: 1px solid var(--border-hairline);
+    color: var(--text-primary);
   }
 
   .e30-card--subtle {

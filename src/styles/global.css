@@ -6,7 +6,7 @@
 @import "./tokens/shape.css";
 @import "./tokens/motion.css";
 @import "./tokens/light.css";
-@import "./tokens/base.css";
+@import "./tokens/base.css" layer(base);
 
 @theme inline {
   --color-paper: var(--bg-page);
