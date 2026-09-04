@@ -4,7 +4,7 @@ import Icon from './Icon.astro';
 interface Props {
   icon: string;
   caption: string;
-  dimensions: string;
+  dimensions?: string;
   aspect: string; // CSS aspect-ratio value, e.g. "9 / 17"
   radius?: string; // default "30px"
   onDark?: boolean; // translucent-white variant for use on a dark Section
@@ -20,6 +20,6 @@ const style = `border-radius: ${radius}; aspect-ratio: ${aspect};${
 <div class="e30-shot flex flex-col items-center justify-center gap-2.5 text-center" style={style}>
   <Icon name={icon} size={24} class={onDark ? 'opacity-60' : 'text-icon-muted'} />
   <span class={`font-data text-caption ${onDark ? 'text-white opacity-70' : 'text-fg-subtle'}`}>
-    {caption}<br />{dimensions}
+    {caption}{dimensions && <><br />{dimensions}</>}
   </span>
 </div>

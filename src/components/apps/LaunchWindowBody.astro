@@ -1,0 +1,168 @@
+---
+import Section from '../Section.astro';
+import Card from '../Card.astro';
+import Badge from '../Badge.astro';
+import PlaceholderMedia from '../PlaceholderMedia.astro';
+import Icon from '../Icon.astro';
+import type { AppEntry } from '../../lib/collections';
+
+interface Props {
+  app: AppEntry;
+}
+
+/**
+ * Static marketing figures for the countdown band — typography, not a live
+ * timer. Per the spec's routing section, this page has no client-side JS;
+ * these numbers are a snapshot of what the app's own countdown screen shows,
+ * not a promise about any real, upcoming launch.
+ */
+const countdown = [
+  { value: '02', unit: 'days' },
+  { value: '11', unit: 'hours' },
+  { value: '30', unit: 'minutes' },
+  { value: '44', unit: 'seconds' },
+];
+
+/**
+ * Page-specific marketing copy, not shared static data (unlike
+ * src/data/principles.ts etc.) — this content only ever appears on this one
+ * app's landing page, so it lives inline here rather than in src/data/.
+ */
+const launchSteps = [
+  {
+    n: '1',
+    icon: 'map-pin',
+    title: 'Choose your sky',
+    body: 'Cape Canaveral, Vandenberg, Starbase — or just let it use where you are and sort the closest sites first.',
+    shot: 'Site picker',
+  },
+  {
+    n: '2',
+    icon: 'calendar',
+    title: 'See what’s next',
+    body: 'The next few launches for that site, with vehicle, payload and how confident the schedule looks.',
+    shot: 'Upcoming list',
+  },
+  {
+    n: '3',
+    icon: 'clock',
+    title: 'Watch the clock',
+    body: 'A live countdown to the top launch, on the home screen and in a widget. It follows the window when the window moves.',
+    shot: 'Countdown + widget',
+  },
+];
+
+const launchFacts = [
+  {
+    icon: 'bell',
+    title: 'A nudge, not a firehose',
+    body: 'One notification before the window opens. Not every schedule change.',
+  },
+  {
+    icon: 'wifi-off',
+    title: 'Works on a bad connection',
+    body: 'The last known schedule stays on the device, so the countdown keeps running.',
+  },
+  {
+    icon: 'eye',
+    title: 'Visibility, not just timing',
+    body: "Whether it's a daylight launch and roughly where to look from your spot.",
+  },
+  {
+    icon: 'user-off',
+    title: 'No account',
+    body: 'Open it and it works. Nothing to sign up for, nothing to log in to.',
+  },
+];
+
+// `app` is unused here — this body's copy is fixed marketing content, not
+// derived from the content-collection entry. The prop exists so every
+// registered `APP_BODIES` component shares one call signature (`{ app }`).
+---
+
+<Section tone="deep">
+  <div class="mb-5 flex flex-wrap items-center gap-3">
+    <div class="font-data text-micro uppercase tracking-[var(--ls-micro)] opacity-65">
+      Next launch · Cape Canaveral
+    </div>
+    <Badge tone="info">Name not final</Badge>
+  </div>
+  <div class="flex flex-wrap items-end gap-7">
+    {
+      countdown.map((c) => (
+        <div class="flex flex-col gap-1.5">
+          <span class="font-display text-hero-num font-semibold tabular-nums">{c.value}</span>
+          <span class="font-data text-micro uppercase tracking-[var(--ls-micro)] opacity-60">{c.unit}</span>
+        </div>
+      ))
+    }
+  </div>
+  <p class="mt-8 max-w-[56ch] text-body-lg opacity-85">
+    The countdown tracks the window, not a guess — when a launch slips, the number on your screen slips with it.
+  </p>
+</Section>
+
+<Section>
+  <h2 class="m-0 mb-8 font-display text-display-md font-semibold tracking-[var(--ls-display-md)]">
+    How it works
+  </h2>
+  <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
+    {
+      launchSteps.map((step) => (
+        <Card padding="lg">
+          <PlaceholderMedia
+            icon={step.icon}
+            caption={step.shot}
+            aspect="9 / 16"
+            radius="var(--radius-lg)"
+          />
+          <div class="font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-subtle">
+            Step {step.n}
+          </div>
+          <div class="text-headline font-medium">{step.title}</div>
+          <p class="m-0 text-fg-muted">{step.body}</p>
+        </Card>
+      ))
+    }
+  </div>
+</Section>
+
+<Section tone="sunken">
+  <div class="grid items-center gap-14" style="grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr)">
+    <div>
+      <h2 class="m-0 font-display text-display-md font-semibold tracking-[var(--ls-display-md)]">
+        Built for people who look up
+      </h2>
+      <p class="mt-5 text-body-lg text-fg-muted">
+        I live in Florida. Half the launches I've seen, I saw by accident — someone texted me 40 seconds before
+        the roll. This is the app that texts you first.
+      </p>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      {
+        launchFacts.map((fact) => (
+          <Card padding="md">
+            <Icon name={fact.icon} size={20} class="text-icon-accent" />
+            <div class="font-medium">{fact.title}</div>
+            <p class="m-0 text-label leading-normal text-fg-muted">{fact.body}</p>
+          </Card>
+        ))
+      }
+    </div>
+  </div>
+</Section>
+
+<Section pad="py-20 pb-22">
+  <Card tone="accent" padding="lg">
+    <div class="font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-accent">What it doesn't do</div>
+    <ul class="m-0 mt-2 flex flex-col gap-2.5 pl-5 text-fg-muted">
+      <li>No account required. Nothing to sign up for.</li>
+      <li>Your location stays on the device — it's used to sort launch sites, not stored on a server.</li>
+      <li>No ads, no analytics resold to anyone.</li>
+      <li>It won't promise a launch will happen. Weather wins.</li>
+    </ul>
+  </Card>
+  <p class="mt-4 text-caption text-fg-subtle">
+    Launch times come from public launch schedules and can change without notice.
+  </p>
+</Section>

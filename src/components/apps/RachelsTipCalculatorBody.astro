@@ -1,0 +1,56 @@
+---
+import Section from '../Section.astro';
+import Card from '../Card.astro';
+import Icon from '../Icon.astro';
+import type { AppEntry } from '../../lib/collections';
+
+interface Props {
+  app: AppEntry;
+}
+
+/**
+ * Page-specific marketing copy, not shared static data (unlike
+ * src/data/principles.ts etc.) — this content only ever appears on this one
+ * app's landing page, so it lives inline here rather than in src/data/.
+ */
+const tipFeatures = [
+  {
+    icon: 'pencil',
+    title: 'Line by line',
+    body: 'The exact figures to write on the tip line and the total line. No mental arithmetic at the table.',
+  },
+  {
+    icon: 'arrows-up-down',
+    title: 'Round the total',
+    body: 'Nudge the total up or down to a clean number and it back-solves the tip for you.',
+  },
+  {
+    icon: 'users-group',
+    title: 'Split the check',
+    body: 'Divide by however many people, including the tip, with the remainder handled sensibly.',
+  },
+  {
+    icon: 'lock',
+    title: 'Nothing leaves the phone',
+    body: 'No account, no analytics, no receipts stored anywhere.',
+  },
+];
+
+// `app` is unused here — this body's copy is fixed marketing content, not
+// derived from the content-collection entry. The prop exists so every
+// registered `APP_BODIES` component shares one call signature (`{ app }`).
+---
+
+<Section tone="sunken">
+  <div class="grid gap-5" style="grid-template-columns: repeat(auto-fit, minmax(210px, 1fr))">
+    {
+      tipFeatures.map((feature) => (
+        <Card padding="md">
+          <Icon name={feature.icon} size={20} class="text-icon-accent" />
+          <div class="font-medium">{feature.title}</div>
+          <p class="m-0 text-label leading-normal text-fg-muted">{feature.body}</p>
+        </Card>
+      ))
+    }
+  </div>
+</Section>
