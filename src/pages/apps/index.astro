@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/Section.astro';
+import AppCard from '../../components/AppCard.astro';
+import { getApps, assertPolicyCoverage } from '../../lib/collections';
+
+await assertPolicyCoverage();
+
+const apps = await getApps();
+---
+
+<BaseLayout
+  title="Apps — Eleven30"
+  description="Every app I've shipped, and what's currently in testing."
+  path="/apps/"
+>
+  <Section>
+    <div class="max-w-[58ch]">
+      <div class="mb-4 font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-subtle">
+        Apps
+      </div>
+      <h1 class="m-0 font-display text-display-lg font-semibold">
+        Everything I've shipped, and what's in testing.
+      </h1>
+      <p class="mt-5 text-body-lg text-fg-muted">
+        Each app has its own page with screenshots, a support route and a privacy policy — the
+        things the app stores ask for, written in plain sentences.
+      </p>
+    </div>
+    <div class="mt-12 flex flex-col gap-5">
+      {apps.map((app) => <AppCard app={app} layout="row" />)}
+    </div>
+  </Section>
+</BaseLayout>
