@@ -1,0 +1,23 @@
+---
+import PolicyLayout from '../../../layouts/PolicyLayout.astro';
+import { getApps, getPolicyForApp, type AppEntry, type PolicyEntry } from '../../../lib/collections';
+
+export async function getStaticPaths() {
+  const apps = await getApps();
+  return Promise.all(
+    apps.map(async (app) => ({
+      params: { app: app.id },
+      props: { app, policy: await getPolicyForApp(app) },
+    }))
+  );
+}
+
+interface Props {
+  app: AppEntry;
+  policy: PolicyEntry;
+}
+
+const { app, policy } = Astro.props;
+---
+
+<PolicyLayout policy={policy} app={app} />
