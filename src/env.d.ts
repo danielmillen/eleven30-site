@@ -6,3 +6,9 @@
 declare module 'cloudflare:workers' {
   export const env: Record<string, string | undefined>;
 }
+
+// Public (client-visible) build-time env vars. Astro inlines `import.meta.env.PUBLIC_*`
+// values at build time; this typing lets contact.astro read it under strict mode.
+interface ImportMetaEnv {
+  readonly PUBLIC_TURNSTILE_SITE_KEY?: string;
+}
