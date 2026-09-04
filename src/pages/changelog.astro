@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Badge from '../components/Badge.astro';
+import { releases } from '../data/releases';
+---
+
+<BaseLayout
+  title="Changelog — Eleven30"
+  description="Every release across both apps, newest first."
+  path="/changelog/"
+>
+  <Section width="reading" pad="pt-[72px] pb-[88px]">
+    <div class="mb-4 font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-subtle">
+      Release notes
+    </div>
+    <h1 class="m-0 font-display text-display-lg font-semibold">What changed, and when.</h1>
+    <p class="mt-5 max-w-[56ch] text-body-lg text-fg-muted">
+      Every release across both apps, newest first.
+    </p>
+    <div class="mt-12 flex flex-col gap-8">
+      {
+        releases.map((r) => (
+          <div class="grid gap-6 border-b border-hairline pb-8" style="grid-template-columns: 150px minmax(0, 1fr)">
+            <div class="flex flex-col gap-2">
+              <span class="font-data text-caption text-fg-subtle">{r.date}</span>
+              <Badge tone="neutral">{r.app}</Badge>
+            </div>
+            <div>
+              <div class="flex flex-wrap items-center gap-2.5">
+                <span class="font-data text-body font-medium text-fg">{r.version}</span>
+                {r.upcoming && <Badge tone="info">Coming soon</Badge>}
+              </div>
+              <ul class="m-0 mt-3 flex flex-col gap-2 pl-5 text-fg-muted">
+                {r.items.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+</BaseLayout>

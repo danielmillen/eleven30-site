@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Card from '../components/Card.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import PlaceholderMedia from '../components/PlaceholderMedia.astro';
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
+import { principles } from '../data/principles';
+import { elsewhere } from '../data/elsewhere';
+---
+
+<BaseLayout
+  title="About — Eleven30"
+  description="A solo developer in Florida, 25 years in, building small software for himself for once."
+  path="/about/"
+>
+  <Section pad="pt-[72px] pb-20">
+    <div class="grid items-start gap-16" style="grid-template-columns: minmax(0, 1fr) minmax(0, 0.76fr)">
+      <div>
+        <div class="mb-4 font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-subtle">
+          About
+        </div>
+        <h1 class="m-0 text-balance font-display text-display-lg font-semibold">
+          I'm [your name] — a solo developer in Florida, 25 years in.
+        </h1>
+        <div class="mt-7 flex max-w-[62ch] flex-col gap-5 text-body-lg text-fg-muted">
+          <p class="m-0">
+            I've spent most of my career building software for other people — a quarter century of
+            platforms, teams and roadmaps I didn't write. Eleven30 is the part I do for myself: a
+            small studio where I get to finish things properly instead of shipping the version that
+            fit the sprint.
+          </p>
+          <p class="m-0">
+            Both apps started as small irritations. The tip calculator came from a table, with a
+            pen, doing arithmetic I shouldn't have had to do. The launch app came from missing a
+            launch I could have watched from my own driveway.
+          </p>
+          <p class="m-0">Same instinct either way: do the arithmetic for the person, and show your work.</p>
+          <p class="m-0">I answer the support email myself. There's no team behind the address.</p>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <Button href="/consulting/">Work with me</Button>
+          <Button variant="secondary" href="/now/">What I'm doing now</Button>
+        </div>
+      </div>
+      <div class="flex flex-col gap-5">
+        <PlaceholderMedia icon="user" caption="Portrait" dimensions="1200 × 1500" aspect="4 / 5" />
+        <Card padding="md">
+          <div class="mb-3 font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-subtle">
+            Elsewhere
+          </div>
+          <div class="flex flex-col gap-3">
+            {
+              elsewhere.map((e) => (
+                <div class="flex items-center gap-3">
+                  <Icon name={e.icon} size={16} class="text-icon" />
+                  <span class="text-fg-muted">{e.label}</span>
+                </div>
+              ))
+            }
+          </div>
+        </Card>
+      </div>
+    </div>
+  </Section>
+
+  <Section tone="sunken" pad="py-[72px]">
+    <h2 class="m-0 mb-7 font-display text-display-md font-semibold">How I work</h2>
+    <div class="grid gap-5" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr))">
+      {principles.map((p) => <FeatureCard icon={p.icon} title={p.title} body={p.body} />)}
+    </div>
+  </Section>
+</BaseLayout>
