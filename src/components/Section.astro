@@ -1,0 +1,25 @@
+---
+interface Props {
+  tone?: 'paper' | 'sunken' | 'deep' | 'bold' | 'inverse';
+  width?: 'shell' | 'reading';
+  pad?: string; // raw Tailwind vertical-padding classes, e.g. "py-24"
+}
+
+const { tone = 'paper', width = 'shell', pad = 'py-20' } = Astro.props;
+
+const toneClass = {
+  paper: 'bg-paper',
+  sunken: 'bg-sunken border-y border-hairline',
+  deep: 'bg-accent-deep text-fg-on-ground',
+  bold: 'bg-accent-bold text-fg-on-accent',
+  inverse: 'bg-inverse text-fg-inverse',
+}[tone];
+
+const widthClass = width === 'reading' ? 'max-w-reading' : 'max-w-shell';
+---
+
+<section class={`${toneClass} ${pad}`}>
+  <div class={`${widthClass} mx-auto px-8`}>
+    <slot />
+  </div>
+</section>
