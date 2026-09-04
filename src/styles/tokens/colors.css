@@ -1,0 +1,308 @@
+:root {
+  /* ================================================================
+     INK — warm-cool neutral with a faint green cast (calm, not clinical)
+     ================================================================ */
+  --ink-1000: #060908;
+  --ink-900: #0F1413;
+  --ink-800: #1A2120;
+  --ink-700: #2B3331;
+  --ink-600: #454E4B;
+  --ink-500: #667070;
+  --ink-400: #909A97;
+  --ink-300: #BFC6C2;
+  --ink-200: #DCE1DD;
+  --ink-100: #ECEFEA;
+  --ink-050: #F5F7F2;
+  --paper: #FBFCF9;      /* warm off-white page — never pure #fff */
+  --white: #FFFFFF;
+
+  /* ================================================================
+     THE FOUR BRAND HUES
+     All four sit at deliberately similar chroma and lightness, so any two
+     can share a page without vibrating. Bold, saturated, tonal — the
+     harmony comes from matched value, not from draining the colour out.
+     ================================================================ */
+
+  /* Evergreen — the house hue. Eleven30 itself, and "safe". */
+  --green-900: #043024;
+  --green-800: #05493A;
+  --green-700: #066049;
+  --green-600: #07795C;   /* house primary */
+  --green-500: #0A9770;   /* hover / interactive lift */
+  --green-400: #22B98D;
+  --green-300: #6ED6B4;
+  --green-200: #A9E8D2;
+  --green-100: #D8F5EC;
+  --green-050: #ECFBF5;
+
+  /* Marigold — second product accent, and "tight". */
+  --amber-900: #4A3007;
+  --amber-800: #6B460A;
+  --amber-700: #97640D;
+  --amber-600: #C1830C;
+  --amber-500: #E0A017;
+  --amber-400: #F0BC4A;
+  --amber-300: #F8D488;
+  --amber-200: #FCE7BA;
+  --amber-100: #FEF5E2;
+
+  /* Terracotta — third product accent, and "over" / destructive. */
+  --clay-900: #451509;
+  --clay-800: #67210F;
+  --clay-700: #8E3018;
+  --clay-600: #B84424;   /* bold, but a warm earth red — never fire-engine */
+  --clay-500: #D25C3B;
+  --clay-400: #E4826A;
+  --clay-300: #F0AC9A;
+  --clay-200: #F8D2C7;
+  --clay-100: #FDEDE7;
+
+  /* Deep teal-blue — fourth accent (consulting, B2B), and "info". */
+  --slate-900: #0A2C3B;
+  --slate-800: #0E3C51;
+  --slate-700: #135069;
+  --slate-600: #176683;   /* deliberately not a fintech cornflower blue */
+  --slate-500: #1F87A9;
+  --slate-400: #46A9C7;
+  --slate-300: #86C9DD;
+  --slate-200: #BDE1EC;
+  --slate-100: #E3F2F7;
+
+  /* Iris — fifth accent. Built to the same chroma and value as the others,
+     so it reads as a sibling rather than a tech-purple import. */
+  --iris-900: #221040;
+  --iris-800: #331A5C;
+  --iris-700: #472578;
+  --iris-600: #5C3496;
+  --iris-500: #7247B4;
+  --iris-400: #9673CE;
+  --iris-300: #BFA6E4;
+  --iris-200: #DCCDF2;
+  --iris-100: #F0E9FB;
+
+  /* ================================================================
+     ACCENT SLOT — every component reads these, never a raw hue.
+     Remapped by [data-accent] below, which is how one skeleton
+     carries several products.
+     ================================================================ */
+  --accent-900: var(--green-900);
+  --accent-800: var(--green-800);
+  --accent-700: var(--green-700);
+  --accent-600: var(--green-600);
+  --accent-500: var(--green-500);
+  --accent-400: var(--green-400);
+  --accent-300: var(--green-300);
+  --accent-200: var(--green-200);
+  --accent-100: var(--green-100);
+  --accent-050: var(--green-050);
+
+  /* ================================================================
+     SEMANTIC ALIASES — product code uses only these
+     ================================================================ */
+  --bg-page: var(--paper);
+  --bg-sunken: var(--ink-050);
+  --bg-surface: var(--white);
+  --bg-raised: var(--white);
+  --bg-inverse: var(--ink-900);
+
+  /* Saturated full-bleed grounds. Use them — a page with no colour block
+     in it is under-using this system. */
+  --bg-accent-deep: var(--accent-800);
+  --bg-accent-bold: var(--accent-600);
+  --bg-accent-tint: var(--accent-050);
+  --bg-accent-subtle: var(--accent-100);
+  --bg-accent: var(--accent-600);
+  --bg-track: var(--ink-100);          /* meters, progress, burndown ground */
+  --bg-safe-subtle: var(--green-100);
+  --bg-caution-subtle: var(--amber-100);
+  --bg-critical-subtle: var(--clay-100);
+  --bg-info-subtle: var(--slate-100);
+
+  --text-primary: var(--ink-900);
+  --text-secondary: var(--ink-600);
+  --text-tertiary: var(--ink-500);
+  --text-disabled: var(--ink-400);
+  --text-inverse: var(--paper);
+  /* Polarity of text on an accent FILL is a property of the hue, not the mode:
+     each hue scope declares --accent-on-fill, and dark.css never touches it. */
+  --accent-on-fill: var(--paper);
+  --text-on-accent: var(--accent-on-fill);   /* on a 500/600 fill: buttons, bold panels */
+  --text-on-ground: var(--paper);   /* on an 800 deep ground: sections, footers */
+  --text-accent: var(--accent-700);
+  --text-safe: var(--green-700);
+  --text-caution: var(--amber-700);
+  --text-critical: var(--clay-700);
+  --text-link: var(--accent-700);
+  --text-link-hover: var(--accent-500);
+
+  --border-hairline: var(--ink-200);
+  --border-strong: var(--ink-300);
+  --border-accent-subtle: var(--accent-200);
+  --border-caution: var(--amber-200);
+  --border-accent: var(--accent-600);
+  --border-focus: var(--accent-500);
+
+  --icon-default: var(--ink-600);
+  --icon-muted: var(--ink-400);
+  --icon-accent: var(--accent-600);
+
+  /* Interaction steps — components read these, never a hue directly. */
+  --accent-hover: var(--accent-500);
+  --accent-press: var(--accent-700);
+
+  /* Money states — the consumer product's core vocabulary */
+  --state-safe: var(--green-600);
+  --state-tight: var(--amber-600);
+  --state-over: var(--clay-600);
+}
+
+/* ==================================================================
+   PRODUCT ACCENTS — the "shared skeleton" made literal.
+   Put data-accent on <html> or on any subtree. Every component
+   follows; nothing else about the design changes.
+   ================================================================== */
+:root[data-accent="evergreen"], [data-accent="evergreen"] {
+  --accent-900: var(--green-900); --accent-800: var(--green-800);
+  --accent-700: var(--green-700); --accent-600: var(--green-600);
+  --accent-500: var(--green-500); --accent-400: var(--green-400);
+  --accent-300: var(--green-300); --accent-200: var(--green-200);
+  --accent-100: var(--green-100); --accent-050: var(--green-050);
+  --text-accent: var(--accent-700);
+  --accent-on-fill: var(--paper);
+  --text-on-accent: var(--accent-on-fill);
+  --bg-accent: var(--accent-600);
+  --bg-accent-bold: var(--accent-600);
+  --bg-accent-deep: var(--accent-800);
+  --bg-accent-subtle: var(--accent-100);
+  --bg-accent-tint: var(--accent-050);
+  --border-accent-subtle: var(--accent-200);
+  --border-accent: var(--accent-600);
+  --border-focus: var(--accent-500);
+  --icon-accent: var(--accent-600);
+  --accent-hover: var(--accent-500);
+  --accent-press: var(--accent-700);
+  --text-link: var(--text-accent);
+  --text-link-hover: var(--accent-500);
+}
+
+:root[data-accent="marigold"], [data-accent="marigold"] {
+  --accent-900: var(--amber-900); --accent-800: var(--amber-800);
+  --accent-700: var(--amber-700); --accent-600: var(--amber-600);
+  --accent-500: var(--amber-500); --accent-400: var(--amber-400);
+  --accent-300: var(--amber-300); --accent-200: var(--amber-200);
+  --accent-100: var(--amber-100); --accent-050: var(--amber-100);
+  --text-accent: var(--accent-700);
+  /* Marigold is light enough that paper on it is only 3.1:1. Ink clears 5.8:1. */
+  --accent-on-fill: var(--ink-900);
+  /* Derived aliases must be redeclared in the scope: a var() inside a custom
+     property resolves where it is DECLARED, so :root's copies stay evergreen. */
+  --text-on-accent: var(--accent-on-fill);
+  --bg-accent: var(--accent-600);
+  --bg-accent-bold: var(--accent-600);
+  --bg-accent-deep: var(--accent-800);
+  --bg-accent-subtle: var(--accent-100);
+  --bg-accent-tint: var(--accent-050);
+  --border-accent-subtle: var(--accent-200);
+  --border-accent: var(--accent-600);
+  --border-focus: var(--accent-500);
+  --icon-accent: var(--accent-600);
+  --accent-hover: var(--accent-500);
+  --accent-press: var(--accent-700);
+  --text-link: var(--text-accent);
+  --text-link-hover: var(--accent-500);
+}
+
+:root[data-accent="terracotta"], [data-accent="terracotta"] {
+  --accent-900: var(--clay-900); --accent-800: var(--clay-800);
+  --accent-700: var(--clay-700); --accent-600: var(--clay-600);
+  --accent-500: var(--clay-500); --accent-400: var(--clay-400);
+  --accent-300: var(--clay-300); --accent-200: var(--clay-200);
+  --accent-100: var(--clay-100); --accent-050: var(--clay-100);
+  --text-accent: var(--accent-700);
+  --accent-on-fill: var(--paper);
+  --text-on-accent: var(--accent-on-fill);
+  --bg-accent: var(--accent-600);
+  --bg-accent-bold: var(--accent-600);
+  --bg-accent-deep: var(--accent-800);
+  --bg-accent-subtle: var(--accent-100);
+  --bg-accent-tint: var(--accent-050);
+  --border-accent-subtle: var(--accent-200);
+  --border-accent: var(--accent-600);
+  --border-focus: var(--accent-500);
+  --icon-accent: var(--accent-600);
+  --accent-hover: var(--accent-500);
+  --accent-press: var(--accent-700);
+  --text-link: var(--text-accent);
+  --text-link-hover: var(--accent-500);
+}
+
+:root[data-accent="teal"], [data-accent="teal"] {
+  --accent-900: var(--slate-900); --accent-800: var(--slate-800);
+  --accent-700: var(--slate-700); --accent-600: var(--slate-600);
+  --accent-500: var(--slate-500); --accent-400: var(--slate-400);
+  --accent-300: var(--slate-300); --accent-200: var(--slate-200);
+  --accent-100: var(--slate-100); --accent-050: var(--slate-100);
+  --text-accent: var(--accent-700);
+  --accent-on-fill: var(--paper);
+  --text-on-accent: var(--accent-on-fill);
+  --bg-accent: var(--accent-600);
+  --bg-accent-bold: var(--accent-600);
+  --bg-accent-deep: var(--accent-800);
+  --bg-accent-subtle: var(--accent-100);
+  --bg-accent-tint: var(--accent-050);
+  --border-accent-subtle: var(--accent-200);
+  --border-accent: var(--accent-600);
+  --border-focus: var(--accent-500);
+  --icon-accent: var(--accent-600);
+  --accent-hover: var(--accent-500);
+  --accent-press: var(--accent-700);
+  --text-link: var(--text-accent);
+  --text-link-hover: var(--accent-500);
+}
+
+:root[data-accent="iris"], [data-accent="iris"] {
+  --accent-900: var(--iris-900); --accent-800: var(--iris-800);
+  --accent-700: var(--iris-700); --accent-600: var(--iris-600);
+  --accent-500: var(--iris-500); --accent-400: var(--iris-400);
+  --accent-300: var(--iris-300); --accent-200: var(--iris-200);
+  --accent-100: var(--iris-100); --accent-050: var(--iris-100);
+  --text-accent: var(--accent-700);
+  --accent-on-fill: var(--paper);
+  --text-on-accent: var(--accent-on-fill);
+  --bg-accent: var(--accent-600);
+  --bg-accent-bold: var(--accent-600);
+  --bg-accent-deep: var(--accent-800);
+  --bg-accent-subtle: var(--accent-100);
+  --bg-accent-tint: var(--accent-050);
+  --border-accent-subtle: var(--accent-200);
+  --border-accent: var(--accent-600);
+  --border-focus: var(--accent-500);
+  --icon-accent: var(--accent-600);
+  --accent-hover: var(--accent-500);
+  --accent-press: var(--accent-700);
+  --text-link: var(--text-accent);
+  --text-link-hover: var(--accent-500);
+}
+
+/* ==================================================================
+   Dark mode + a nested accent scope. A [data-accent] block redeclares
+   --text-accent for its subtree, so dark.css's :root correction cannot
+   reach it. Restate the light steps for any scope under dark.
+   ================================================================== */
+[data-theme="dark"] [data-accent],
+[data-theme="dark"][data-accent] {
+  --text-accent: var(--accent-300);
+  --text-link: var(--accent-300);
+  --text-link-hover: var(--accent-200);
+  --text-on-accent: var(--accent-on-fill);
+  --bg-accent: var(--accent-600);
+  --bg-accent-bold: var(--accent-600);
+  --bg-accent-subtle: color-mix(in oklab, var(--accent-600) 26%, #0B0F0E);
+  --bg-accent-tint: color-mix(in oklab, var(--accent-600) 14%, #0B0F0E);
+  --border-accent-subtle: color-mix(in oklab, var(--accent-600) 45%, #0B0F0E);
+  --border-accent: var(--accent-400);
+  --border-focus: var(--accent-400);
+  --icon-accent: var(--accent-400);
+  --accent-hover: var(--accent-500);
+  --accent-press: var(--accent-700);
+}

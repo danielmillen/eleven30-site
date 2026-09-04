@@ -1,0 +1,16 @@
+/* These three Google families ARE the canonical Eleven30 typefaces — a deliberate
+   choice, not a placeholder: no licensing fees, freely self-hostable. If the brand
+   ever moves to retail faces, replace the families here and keep the token names. */
+
+:root {
+  --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-mono: var(--font-ibm-plex-mono), ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Semantic roles */
+  --font-display: var(--font-sans);   /* headlines, wordmark */
+  --font-body: var(--font-sans);      /* all UI + prose */
+  --font-editorial: var(--font-serif);/* marketing pull-quotes, hero accents */
+  --font-numeric: var(--font-sans);   /* money figures, with tabular-nums */
+  --font-data: var(--font-mono);      /* labels, timestamps, receipts, code */
+}
