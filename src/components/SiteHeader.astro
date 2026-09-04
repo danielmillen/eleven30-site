@@ -1,0 +1,49 @@
+---
+import Monogram from './Monogram.astro';
+import Wordmark from './Wordmark.astro';
+import Button from './Button.astro';
+
+interface NavItem {
+  label: string;
+  href: string;
+  activeWhen: (path: string) => boolean;
+}
+
+const navItems: NavItem[] = [
+  { label: 'Apps', href: '/apps/', activeWhen: (path) => path.startsWith('/apps/') },
+  { label: 'Blog', href: '/blog/', activeWhen: (path) => path.startsWith('/blog/') },
+  { label: 'About', href: '/about/', activeWhen: (path) => path === '/about/' || path === '/now/' },
+  { label: 'Consulting', href: '/consulting/', activeWhen: (path) => path.startsWith('/consulting/') },
+  { label: 'Support', href: '/contact/', activeWhen: (path) => path.startsWith('/contact/') },
+];
+
+const pathname = Astro.url.pathname;
+---
+
+<header
+  class="sticky top-0 z-20 border-b border-hairline"
+  style="background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(12px);"
+>
+  <div class="max-w-shell mx-auto px-8 h-16 flex items-center justify-between gap-8">
+    <a href="/" class="inline-flex items-center gap-2.5">
+      <Monogram size={28} />
+      <Wordmark size={20} />
+    </a>
+    <nav class="flex items-center gap-0.5">
+      {navItems.map((item) => {
+        const active = item.activeWhen(pathname);
+        return (
+          <a
+            href={item.href}
+            class="relative px-3 py-2 rounded-sm text-body text-fg-muted hover:text-fg hover:bg-ink-050"
+          >
+            {item.label}
+            {active && <span class="absolute left-3 right-3 bottom-0 h-0.5 rounded-full bg-accent" />}
+          </a>
+        );
+      })}
+      <div class="w-2.5"></div>
+      <Button size="sm" href="/apps/launch-window/">Join the beta</Button>
+    </nav>
+  </div>
+</header>
