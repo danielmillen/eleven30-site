@@ -32,5 +32,3 @@ Rachel's Tip Calculator isn't directed at children under 13, and I don't knowing
 If this policy changes in a way that matters, the date at the top changes and the change is described here.
 
 Questions about any of this reach me directly — see the contact details below.
-
-*This page is a design placeholder written in plain language, not reviewed legal copy. Have a lawyer check it before you submit to the app stores.*
