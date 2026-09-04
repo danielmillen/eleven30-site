@@ -1,0 +1,9 @@
+{
+  "name": "eleven30-site",
+  "main": "@astrojs/cloudflare/entrypoints/server",
+  "compatibility_date": "2026-09-03",
+  "assets": {
+    "html_handling": "force-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}
