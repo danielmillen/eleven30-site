@@ -49,7 +49,10 @@ import { services } from '../data/services';
           right person.
         </p>
       </div>
-      <div class="flex flex-wrap justify-end max-[820px]:justify-start gap-3">
+      {/* 665px matches where the sibling grid above actually collapses to one column
+         (minmax(min(100%,290px),1fr) with its clamp() gap) — not the site's usual 820px
+         cutoff — so the button never sits misaligned in a still-two-column layout. */}
+      <div class="flex flex-wrap justify-end max-[665px]:justify-start gap-3">
         <Button size="lg" variant="secondary" href="/contact/">Start a conversation</Button>
       </div>
     </div>
