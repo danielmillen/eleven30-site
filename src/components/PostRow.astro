@@ -1,0 +1,47 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { readingTime, formatDate } from '../lib/blog';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  dense?: boolean;
+}
+
+const { post, dense = false } = Astro.props;
+
+const href = `/blog/${post.id}/`;
+const date = formatDate(post.data.pubDate);
+const tag = post.data.tags[0];
+---
+
+{
+  dense ? (
+    <a
+      href={href}
+      class="grid items-baseline gap-5 border-b border-hairline px-2 py-[22px] text-fg hover:bg-ink-050"
+      style="grid-template-columns: 118px minmax(0, 1fr)"
+    >
+      <span class="font-data text-caption text-fg-subtle">{date}</span>
+      <span>
+        <span class="block text-headline font-medium">{post.data.title}</span>
+        <span class="mt-1.5 block max-w-[58ch] text-fg-muted">{post.data.description}</span>
+      </span>
+    </a>
+  ) : (
+    <a
+      href={href}
+      class="grid items-baseline gap-6 border-b border-hairline px-2 py-[26px] text-fg hover:bg-ink-050"
+      style="grid-template-columns: 150px minmax(0, 1fr)"
+    >
+      <span class="flex flex-col gap-2">
+        <span class="font-data text-caption text-fg-subtle">{date}</span>
+        {tag && <span class="font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-accent">{tag}</span>}
+      </span>
+      <span>
+        <span class="block text-title font-medium">{post.data.title}</span>
+        <span class="mt-2 block max-w-[62ch] text-fg-muted">{post.data.description}</span>
+        <span class="mt-3 block font-data text-caption text-fg-subtle">{readingTime(post.body ?? '')}</span>
+      </span>
+    </a>
+  )
+}

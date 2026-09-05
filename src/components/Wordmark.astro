@@ -1,0 +1,25 @@
+---
+interface Props {
+  size?: number;
+  tone?: 'default' | 'light';
+}
+
+const { size = 20, tone = 'default' } = Astro.props;
+
+const small = size < 18;
+const letterSpacing = small ? '-0.016em' : '-0.028em';
+const gap = small ? '5px' : '7px';
+const elevenWeight = small ? 500 : 400;
+const thirtyWeight = small ? 800 : 700;
+
+const textClass = tone === 'light' ? 'text-fg-inverse' : 'text-fg';
+const accentClass = tone === 'light' ? 'text-[color:var(--accent-300)]' : 'text-fg-accent';
+---
+
+<span
+  class={`e30-wordmark inline-flex items-baseline font-display ${textClass}`}
+  style={`font-size: ${size}px; letter-spacing: ${letterSpacing}; gap: ${gap};`}
+>
+  <span style={`font-weight: ${elevenWeight};`}>Eleven</span>
+  <span class={accentClass} style={`font-weight: ${thirtyWeight};`}>30</span>
+</span>

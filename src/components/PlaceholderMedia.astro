@@ -1,0 +1,25 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  icon: string;
+  caption: string;
+  dimensions?: string;
+  aspect: string; // CSS aspect-ratio value, e.g. "9 / 17"
+  radius?: string; // default "30px"
+  onDark?: boolean; // translucent-white variant for use on a dark Section
+}
+
+const { icon, caption, dimensions, aspect, radius = '30px', onDark = false } = Astro.props;
+
+const style = `border-radius: ${radius}; aspect-ratio: ${aspect};${
+  onDark ? ' background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.25);' : ''
+}`;
+---
+
+<div class="e30-shot flex flex-col items-center justify-center gap-2.5 text-center" style={style}>
+  <Icon name={icon} size={24} class={onDark ? 'opacity-60' : 'text-icon-muted'} />
+  <span class={`font-data text-caption ${onDark ? 'text-white opacity-70' : 'text-fg-subtle'}`}>
+    {caption}{dimensions && <><br />{dimensions}</>}
+  </span>
+</div>

@@ -1,0 +1,28 @@
+---
+interface Props {
+  name: string;
+  size?: number;
+  class?: string;
+}
+
+const { name, size = 24, class: className } = Astro.props;
+
+const icons = import.meta.glob<string>('../icons/*.svg', { query: '?raw', import: 'default', eager: true });
+
+const key = `../icons/${name}.svg`;
+const raw = icons[key];
+
+if (!raw) {
+  throw new Error(`Icon: no icon named "${name}" found in src/icons/ (looked for ${key}).`);
+}
+
+let svg = raw.replace(/\swidth="\d+"/, ` width="${size}"`).replace(/\sheight="\d+"/, ` height="${size}"`);
+
+if (className) {
+  svg = /\sclass="/.test(svg)
+    ? svg.replace(/\sclass="/, ` class="${className} `)
+    : svg.replace('<svg', `<svg class="${className}"`);
+}
+---
+
+<Fragment set:html={svg} />

@@ -1,0 +1,56 @@
+---
+import '../styles/global.css';
+import { Font } from 'astro:assets';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { SITE } from '../config/site';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string; // used for canonical + og:url, e.g. "/apps/launch-window/"
+  ogType?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { title, description, path, ogType = 'website', jsonLd } = Astro.props;
+
+const canonicalHref = new URL(path, Astro.site).href;
+
+/**
+ * `set:html` does not escape, so replacing `<` is what stops a future
+ * `</script>`-containing value from breaking out of the tag. Do not
+ * re-escape this string elsewhere.
+ */
+const ld = jsonLd ? JSON.stringify(jsonLd).replace(/</g, '\\u003c') : undefined;
+---
+
+<html lang="en" data-theme="light" data-accent="teal">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalHref} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalHref} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta name="twitter:card" content="summary" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" href="/rss.xml" />
+    <link rel="icon" href="/favicon.svg" />
+    <Font cssVariable="--font-instrument-sans" preload />
+    <Font cssVariable="--font-instrument-serif" />
+    <Font cssVariable="--font-ibm-plex-mono" />
+    {ld && <script type="application/ld+json" set:html={ld} is:inline />}
+  </head>
+  <body>
+    <SiteHeader />
+    <main>
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

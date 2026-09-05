@@ -1,0 +1,81 @@
+---
+import Wordmark from './Wordmark.astro';
+import { getApps } from '../lib/collections';
+
+interface FooterLink {
+  label: string;
+  href: string;
+}
+
+interface FooterColumn {
+  title: string;
+  links: FooterLink[];
+}
+
+const apps = await getApps();
+
+const footerColumns: FooterColumn[] = [
+  {
+    title: 'Apps',
+    links: [
+      ...apps.map((app) => ({ label: app.data.name, href: `/apps/${app.id}/` })),
+      { label: 'Release notes', href: '/changelog/' },
+    ],
+  },
+  {
+    title: 'Eleven30',
+    links: [
+      { label: 'About', href: '/about/' },
+      { label: 'Now', href: '/now/' },
+      { label: 'Blog', href: '/blog/' },
+      { label: 'Consulting', href: '/consulting/' },
+    ],
+  },
+  {
+    title: 'Help',
+    links: [
+      { label: 'Support', href: '/contact/' },
+      { label: 'App privacy', href: '/apps/' },
+      { label: 'Home', href: '/' },
+    ],
+  },
+];
+---
+
+<footer class="bg-inverse text-fg-inverse">
+  <div
+    class="max-w-shell mx-auto px-8 pt-16 pb-10 grid gap-12"
+    style="grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));"
+  >
+    <div>
+      <Wordmark size={22} tone="light" />
+      <p class="mt-4 max-w-[34ch] text-body opacity-70">
+        Independent software from a studio of one. Web and mobile, made in Florida.
+      </p>
+      <p class="mt-5 max-w-[40ch] text-caption opacity-55">
+        Launch times come from public schedules and can change without notice.
+      </p>
+    </div>
+    {footerColumns.map((col) => (
+      <div>
+        <div class="mb-4 font-data text-micro uppercase tracking-[var(--ls-micro)] opacity-50">
+          {col.title}
+        </div>
+        <div class="flex flex-col items-start gap-3">
+          {col.links.map((link) => (
+            <a href={link.href} class="text-fg-inverse text-body opacity-75 hover:opacity-100">
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+  <div
+    class="max-w-shell mx-auto px-8 pt-6 pb-10 flex justify-between gap-6 flex-wrap font-data text-caption opacity-55"
+    style="border-top: 1px solid rgba(255,255,255,0.12);"
+  >
+    <span>© 2026 Eleven30</span>
+    <span>eleven30.xyz</span>
+  </div>
+</footer>

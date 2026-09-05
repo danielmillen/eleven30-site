@@ -1,0 +1,18 @@
+---
+import Card from './Card.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  icon: string;
+  title: string;
+  body: string;
+}
+
+const { icon, title, body } = Astro.props;
+---
+
+<Card padding="lg">
+  <Icon name={icon} size={24} class="text-icon-accent" />
+  <div class="text-headline font-medium">{title}</div>
+  <p class="text-fg-muted">{body}</p>
+</Card>

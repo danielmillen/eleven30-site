@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+
+/* These three Google families ARE the canonical Eleven30 typefaces — a deliberate
+   choice, not a placeholder: no licensing fees, freely self-hostable. If the brand
+   ever moves to retail faces, replace the families here and keep the token names. */
+
+:root {
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Semantic roles */
+  --font-display: var(--font-sans);   /* headlines, wordmark */
+  --font-body: var(--font-sans);      /* all UI + prose */
+  --font-editorial: var(--font-serif);/* marketing pull-quotes, hero accents */
+  --font-numeric: var(--font-sans);   /* money figures, with tabular-nums */
+  --font-data: var(--font-mono);      /* labels, timestamps, receipts, code */
+}

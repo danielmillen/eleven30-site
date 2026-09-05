@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import DefinitionRow from '../components/DefinitionRow.astro';
+import { nowLong, nowUpdated } from '../data/now';
+---
+
+<BaseLayout
+  title="Now — Eleven30"
+  description="A short, honest list of what I'm working on right now."
+  path="/now/"
+>
+  <Section width="reading" pad="pt-[72px] pb-[88px]">
+    <div class="mb-4 font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-subtle">
+      Now · updated {nowUpdated}
+    </div>
+    <h1 class="m-0 font-display text-display-lg font-semibold">What I'm working on right now.</h1>
+    <p class="mt-5 max-w-[56ch] text-body-lg text-fg-muted">
+      A short, honest list. I update it when it stops being true.
+    </p>
+    <div class="mt-11 flex flex-col border-t border-hairline">
+      {
+        nowLong.map((n) => (
+          <div class="border-b border-hairline px-1 py-[22px]">
+            <DefinitionRow label={n.label}>
+              <span class="text-body-lg text-fg-muted">{n.text}</span>
+            </DefinitionRow>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+</BaseLayout>

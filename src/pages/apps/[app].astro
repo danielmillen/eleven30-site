@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/Section.astro';
+import Card from '../../components/Card.astro';
+import Badge from '../../components/Badge.astro';
+import Icon from '../../components/Icon.astro';
+import Button from '../../components/Button.astro';
+import PlaceholderMedia from '../../components/PlaceholderMedia.astro';
+import { getApps, STATUS_META, PLATFORM_LABELS, type AppEntry } from '../../lib/collections';
+import { APP_BODIES } from '../../components/apps';
+
+export async function getStaticPaths() {
+  const apps = await getApps();
+  return apps.map((app) => ({ params: { app: app.id }, props: { app } }));
+}
+
+interface Props {
+  app: AppEntry;
+}
+
+const { app } = Astro.props;
+
+const CAPTION_STATUS: Record<AppEntry['data']['status'], string> = {
+  development: 'in development',
+  beta: 'in beta',
+  released: 'available now',
+};
+
+const status = STATUS_META[app.data.status];
+const platformText = app.data.platforms.map((platform) => PLATFORM_LABELS[platform]).join(' · ');
+const captionLine = `${platformText} · ${CAPTION_STATUS[app.data.status]}`;
+
+/**
+ * Primary CTA. Released apps with a real store URL link to it; everything
+ * else (released-with-no-URL, or still in development/beta) gets a
+ * waitlist-style/disabled-looking CTA rather than a fabricated store link —
+ * see Open Question 2 in the spec.
+ */
+const storeUrl = app.data.appStoreUrl ?? app.data.playStoreUrl;
+const primaryCta =
+  app.data.status === 'released' && storeUrl
+    ? { label: 'Download', href: storeUrl }
+    : app.data.status === 'released'
+      ? { label: 'Download', href: undefined }
+      : { label: 'Join the beta', href: '/contact/' };
+
+const appLinks = [
+  { label: 'Privacy policy', icon: 'lock', href: `/apps/${app.id}/privacy/` },
+  { label: 'Support', icon: 'lifebuoy', href: '/contact/' },
+  { label: 'Release notes', icon: 'file-text', href: '/changelog/' },
+];
+
+const operatingSystem = app.data.platforms.map((platform) => PLATFORM_LABELS[platform]).join(', ');
+const offers = [
+  ...(app.data.appStoreUrl ? [{ '@type': 'Offer', url: app.data.appStoreUrl }] : []),
+  ...(app.data.playStoreUrl ? [{ '@type': 'Offer', url: app.data.playStoreUrl }] : []),
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: app.data.name,
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem,
+  ...(offers.length > 0 ? { offers } : {}),
+};
+
+const Body = APP_BODIES[app.id];
+---
+
+<BaseLayout
+  title={`${app.data.name} — Eleven30`}
+  description={app.data.tagline}
+  path={`/apps/${app.id}/`}
+  jsonLd={jsonLd}
+>
+  <Section>
+    <a href="/apps/" class="mb-8 inline-block text-label text-fg-muted">← All apps</a>
+    <div class="grid items-center gap-14" style="grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr)">
+      <div>
+        <div class="mb-6 flex flex-wrap items-center gap-3.5">
+          <div
+            class="e30-shot flex shrink-0 items-center justify-center"
+            style="width: 56px; height: 56px; border-radius: 13px"
+          >
+            <Icon name={app.data.icon} size={24} class="text-icon-muted" />
+          </div>
+          <Badge tone={status.tone}>{status.label}</Badge>
+        </div>
+        <h1 class="m-0 text-balance font-display text-display-lg font-semibold">{app.data.name}</h1>
+        <p class="mt-5 max-w-[50ch] text-body-lg text-fg-muted">{app.data.tagline}</p>
+        <p class="mt-4 max-w-[60ch] text-fg-muted">{app.data.description}</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          {
+            primaryCta.href ? (
+              <Button size="lg" href={primaryCta.href}>
+                {primaryCta.label}
+              </Button>
+            ) : (
+              <Button size="lg" variant="secondary" disabled>
+                {primaryCta.label}
+              </Button>
+            )
+          }
+        </div>
+        <div class="mt-4 font-data text-caption text-fg-subtle">{captionLine}</div>
+      </div>
+      <PlaceholderMedia
+        icon={app.data.icon}
+        caption="App screenshot"
+        dimensions="1290 × 2796"
+        aspect="9 / 17"
+        radius="30px"
+      />
+    </div>
+  </Section>
+
+  <Section>
+    <Card padding="lg">
+      <div class="mb-1 font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-subtle">More</div>
+      <div class="flex flex-col">
+        {
+          appLinks.map((link) => (
+            <a
+              href={link.href}
+              class="flex items-center justify-between gap-4 border-b border-hairline py-3.5 text-body text-fg last:border-b-0 hover:bg-ink-050"
+            >
+              <span class="flex items-center gap-3">
+                <Icon name={link.icon} size={20} class="text-icon" />
+                {link.label}
+              </span>
+              <Icon name="chevron-right" size={16} class="text-icon-muted" />
+            </a>
+          ))
+        }
+      </div>
+    </Card>
+  </Section>
+
+  {Body && <Body app={app} />}
+</BaseLayout>

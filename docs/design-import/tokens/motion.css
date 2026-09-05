@@ -1,0 +1,13 @@
+:root {
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --ease-enter: cubic-bezier(0, 0, 0, 1);
+
+  --dur-instant: 90ms;
+  --dur-fast: 150ms;
+  --dur-normal: 220ms;
+  --dur-slow: 340ms;
+  --dur-figure: 640ms; /* money counting up */
+
+  --press-scale: 0.985;
+}

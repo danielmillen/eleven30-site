@@ -1,0 +1,83 @@
+@import "tailwindcss";
+@import "./tokens/fonts.css";
+@import "./tokens/colors.css";
+@import "./tokens/typography.css";
+@import "./tokens/spacing.css";
+@import "./tokens/shape.css";
+@import "./tokens/motion.css";
+@import "./tokens/light.css";
+@import "./tokens/base.css" layer(base);
+
+@theme inline {
+  --color-paper: var(--bg-page);
+  --color-surface: var(--bg-surface);
+  --color-sunken: var(--bg-sunken);
+  --color-inverse: var(--bg-inverse);
+  --color-accent: var(--bg-accent);
+  --color-accent-bold: var(--bg-accent-bold);
+  --color-accent-deep: var(--bg-accent-deep);
+  --color-accent-subtle: var(--bg-accent-subtle);
+  --color-accent-tint: var(--bg-accent-tint);
+  --color-ink-050: var(--ink-050);
+  --color-ink-100: var(--ink-100);
+
+  --color-fg: var(--text-primary);
+  --color-fg-muted: var(--text-secondary);
+  --color-fg-subtle: var(--text-tertiary);
+  --color-fg-disabled: var(--text-disabled);
+  --color-fg-accent: var(--text-accent);
+  --color-fg-on-accent: var(--text-on-accent);
+  --color-fg-on-ground: var(--text-on-ground);
+  --color-fg-inverse: var(--text-inverse);
+  --color-fg-critical: var(--text-critical);
+
+  --color-hairline: var(--border-hairline);
+  --color-strong: var(--border-strong);
+  --color-focus: var(--border-focus);
+  --color-icon: var(--icon-default);
+  --color-icon-muted: var(--icon-muted);
+  --color-icon-accent: var(--icon-accent);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-data: var(--font-data);
+  --font-editorial: var(--font-editorial);
+
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-full: var(--radius-full);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --ease-standard: var(--ease-standard);
+  --ease-enter: var(--ease-enter);
+  --ease-exit: var(--ease-exit);
+
+  --container-shell: 1200px;
+  --container-reading: 720px;
+}
+
+@theme {
+  --text-hero-num: 64px;      --text-hero-num--line-height: 1.0;  --text-hero-num--letter-spacing: -0.035em;
+  --text-num-lg: 40px;        --text-num-lg--line-height: 1.05;   --text-num-lg--letter-spacing: -0.03em;
+  --text-num-md: 26px;        --text-num-md--line-height: 1.15;   --text-num-md--letter-spacing: -0.02em;
+  --text-display-lg: 36px;    --text-display-lg--line-height: 1.08; --text-display-lg--letter-spacing: -0.03em;
+  --text-display-md: 28px;    --text-display-md--line-height: 1.15; --text-display-md--letter-spacing: -0.025em;
+  --text-title: 22px;         --text-title--line-height: 1.25;    --text-title--letter-spacing: -0.02em;
+  --text-headline: 18px;      --text-headline--line-height: 1.35; --text-headline--letter-spacing: -0.012em;
+  --text-body-lg: 17px;       --text-body-lg--line-height: 1.55;  --text-body-lg--letter-spacing: -0.006em;
+  --text-body: 15px;          --text-body--line-height: 1.55;     --text-body--letter-spacing: -0.004em;
+  --text-label: 13px;         --text-label--line-height: 1.4;     --text-label--letter-spacing: 0em;
+  --text-caption: 12px;       --text-caption--line-height: 1.4;   --text-caption--letter-spacing: 0.004em;
+  --text-micro: 11px;         --text-micro--line-height: 1.3;     --text-micro--letter-spacing: 0.08em;
+}
+
+:root {
+  --ring-focus: 0 0 0 3px color-mix(in oklab, var(--accent-500) 28%, transparent);
+}
+
+@import "./components.css";

@@ -1,0 +1,59 @@
+---
+/**
+ * Hand-written type scale for rendered Markdown (post + policy body copy),
+ * matching canvas 393–403 / 606–617. Not @tailwindcss/typography — the
+ * plugin's defaults would have to be overridden token by token to match,
+ * more work than the declarations below replace. Links inherit the global
+ * `a` styling from base.css; no override needed here.
+ */
+---
+
+<div class="e30-prose">
+  <slot />
+</div>
+
+<style>
+  .e30-prose > :global(p) {
+    font-size: var(--text-body-lg);
+    line-height: 1.7;
+    letter-spacing: var(--ls-body-lg);
+    max-width: 64ch;
+  }
+
+  .e30-prose > :global(p + p) {
+    margin-top: 24px;
+  }
+
+  .e30-prose > :global(h2) {
+    font-family: var(--font-display);
+    font-size: var(--text-title);
+    letter-spacing: var(--ls-title);
+    font-weight: var(--weight-semibold);
+    margin-top: 40px;
+    margin-bottom: 12px;
+  }
+
+  .e30-prose > :global(ul) {
+    margin: 24px 0;
+    padding-left: 1.25em;
+    list-style-type: disc;
+    list-style-position: outside;
+    font-size: var(--text-body-lg);
+    line-height: 1.7;
+    max-width: 64ch;
+  }
+
+  .e30-prose > :global(ul li + li) {
+    margin-top: 10px;
+  }
+
+  .e30-prose > :global(blockquote) {
+    margin: 40px 0;
+    padding: 0 0 0 24px;
+    border-left: 2px solid var(--border-accent);
+    font-family: var(--font-editorial);
+    font-size: 26px;
+    line-height: 1.35;
+    color: var(--text-primary);
+  }
+</style>

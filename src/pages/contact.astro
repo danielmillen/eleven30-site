@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Card from '../components/Card.astro';
+import Icon from '../components/Icon.astro';
+import ContactForm from '../components/ContactForm';
+import { getApps } from '../lib/collections';
+import { faqs } from '../data/faqs';
+import { SITE } from '../config/site';
+
+// Astro inlines `import.meta.env.PUBLIC_*` values at build time, so this
+// warning surfaces in build logs, not in the browser. The fallback is
+// Cloudflare's published always-passes test sitekey — this environment has
+// no real Turnstile site configured.
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA';
+if (!import.meta.env.PUBLIC_TURNSTILE_SITE_KEY) {
+  console.warn('PUBLIC_TURNSTILE_SITE_KEY is not set — falling back to the Turnstile always-passes test key.');
+}
+
+const apps = await getApps();
+const appOptions = [
+  ...apps.map((app) => ({ value: app.id, label: app.data.name })),
+  { value: 'other', label: 'Something else' },
+];
+
+const contactRows = [
+  { icon: 'mail', label: 'Support email', value: SITE.contactEmail },
+  { icon: 'clock', label: 'Typical reply', value: SITE.replyWindow },
+  { icon: 'map-pin', label: 'Based in', value: SITE.location },
+];
+---
+
+<BaseLayout
+  title="Contact — Eleven30"
+  description="Something not working? Write to me — support goes straight to me, no queue and no bot."
+  path="/contact/"
+>
+  <Section pad="py-[72px]">
+    <div class="max-w-[56ch]">
+      <div class="mb-4 font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-subtle">
+        Support
+      </div>
+      <h1 class="m-0 text-balance font-display text-display-lg font-semibold">
+        Something not working? Write to me.
+      </h1>
+      <p class="mt-5 text-body-lg text-fg-muted">
+        Support email goes straight to me — there's no queue and no bot. I reply {SITE.replyWindow.toLowerCase()}, usually the same day.
+      </p>
+    </div>
+
+    <div class="mt-12 grid items-start gap-8" style="grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr)">
+      <div class="flex flex-col gap-3">
+        {
+          faqs.map((faq) => (
+            <Card padding="md">
+              <div class="text-headline font-medium tracking-[var(--ls-headline)]">{faq.q}</div>
+              <p class="m-0 mt-2 text-body text-fg-muted">{faq.a}</p>
+            </Card>
+          ))
+        }
+      </div>
+
+      <Card padding="lg">
+        <div class="font-display text-title font-semibold tracking-[var(--ls-title)]">Send a message</div>
+        <p class="m-0 mt-2 text-body text-fg-muted">
+          Tell me what happened and which app you're using. A screenshot helps.
+        </p>
+        <div class="mt-4">
+          <ContactForm client:load siteKey={siteKey} appOptions={appOptions} />
+        </div>
+        <div class="mt-5 flex flex-col gap-4 border-t border-hairline pt-5">
+          {
+            contactRows.map((row) => (
+              <div class="flex items-center gap-3">
+                <Icon name={row.icon} size={20} class="text-icon" />
+                <div>
+                  <div class="font-data text-caption text-fg-subtle">{row.label}</div>
+                  <div class="font-medium">{row.value}</div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </Card>
+    </div>
+  </Section>
+
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+</BaseLayout>

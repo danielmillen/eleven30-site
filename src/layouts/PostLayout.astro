@@ -1,0 +1,65 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import Prose from '../components/Prose.astro';
+import Button from '../components/Button.astro';
+import { readingTime, formatDate } from '../lib/blog';
+import { SITE } from '../config/site';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const path = `/blog/${post.id}/`;
+const canonicalHref = new URL(path, Astro.site).href;
+
+const date = formatDate(post.data.pubDate);
+const read = readingTime(post.body ?? '');
+const tag = post.data.tags[0];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+  author: { '@type': 'Person', name: SITE.author.name },
+  mainEntityOfPage: canonicalHref,
+};
+---
+
+<BaseLayout title={post.data.title} description={post.data.description} path={path} ogType="article" jsonLd={jsonLd}>
+  <article class="max-w-reading mx-auto px-8 py-16">
+    <a href="/blog/" class="text-label text-fg-muted">{'←'} All posts</a>
+    <div class="mt-6 flex flex-wrap items-center gap-3 font-data text-caption text-fg-subtle">
+      <span>{date}</span>
+      <span>{'·'}</span>
+      <span>{read}</span>
+      {tag && (
+        <>
+          <span>{'·'}</span>
+          <span class="text-micro uppercase tracking-[var(--ls-micro)] text-fg-accent">{tag}</span>
+        </>
+      )}
+    </div>
+    <h1 class="mt-4 text-display-lg font-display font-semibold text-balance">{post.data.title}</h1>
+    <p class="mt-5 text-body-lg text-fg-muted">{post.data.description}</p>
+    <hr class="my-10 border-t border-hairline" />
+    <Prose><Content /></Prose>
+    <div class="mt-14 flex flex-wrap items-center justify-between gap-6 border-t border-hairline pt-7">
+      <div class="flex items-center gap-3">
+        <div class="e30-shot flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-data text-micro text-fg-subtle">
+          photo
+        </div>
+        <div>
+          <div class="font-medium">{SITE.author.name}</div>
+          <a href="/about/" class="text-label text-fg-accent">About me {'→'}</a>
+        </div>
+      </div>
+      <Button variant="secondary" href="/blog/">Next post</Button>
+    </div>
+  </article>
+</BaseLayout>

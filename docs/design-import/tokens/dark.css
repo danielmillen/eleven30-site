@@ -1,0 +1,57 @@
+/* Dark is a real mode, not an inversion: surfaces lift with lightness,
+   the accent brightens two steps, hairlines become light-on-dark at 8%. */
+[data-theme="dark"] {
+  --bg-page: #0B0F0E;
+  --bg-sunken: #080B0A;
+  --bg-surface: #131918;
+  --bg-raised: #1A2120;
+  --bg-inverse: var(--paper);
+  --bg-accent-subtle: color-mix(in oklab, var(--accent-600) 26%, #0B0F0E);
+  --bg-accent-tint: color-mix(in oklab, var(--accent-600) 14%, #0B0F0E);
+  --bg-accent-deep: var(--accent-800);
+  --bg-accent-bold: var(--accent-600);
+  --bg-accent: var(--accent-600);
+  --bg-track: #232B29;
+  --bg-safe-subtle: #0C2A22;
+  --bg-caution-subtle: #2A2013;
+  --bg-critical-subtle: #2B1714;
+  --bg-info-subtle: #10222C;
+
+  --text-primary: #EDF1EC;
+  --text-secondary: #A7B0AC;
+  --text-tertiary: #8A9490;
+  --text-disabled: #5C6663;
+  --text-inverse: var(--ink-900);
+  --text-accent: var(--accent-300);
+  --text-safe: var(--green-300);
+  --text-caution: #E0B461;
+  --text-critical: #E39685;
+  --text-link: var(--accent-300);
+  --text-link-hover: var(--accent-200);
+  /* Accent fills stay at 600 in dark mode so light text keeps clearing AA. Text
+     polarity on a fill is NOT set here — it belongs to the hue (--accent-on-fill),
+     otherwise this rule would clobber marigold's ink override at :root. */
+  --text-on-ground: #EDF1EC;
+
+  --border-hairline: rgba(237, 241, 236, 0.10);
+  --border-strong: rgba(237, 241, 236, 0.20);
+  --border-accent-subtle: color-mix(in oklab, var(--accent-600) 45%, #0B0F0E);
+  --border-caution: color-mix(in oklab, #E0B461 32%, #0B0F0E);
+  --border-accent: var(--accent-400);
+  --border-focus: var(--accent-400);
+  --accent-hover: var(--accent-400);
+  --accent-press: var(--accent-600);
+
+  --icon-default: #A7B0AC;
+  --icon-muted: #6E7874;
+  --icon-accent: var(--accent-400);
+
+  --state-safe: var(--green-400);
+  --state-tight: #D9A94F;
+  --state-over: #D4735F;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.35), 0 8px 20px -8px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 20px 48px -16px rgba(0, 0, 0, 0.6);
+  --ring-focus: 0 0 0 3px rgba(53, 168, 134, 0.35);
+}

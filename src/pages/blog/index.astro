@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostRow from '../../components/PostRow.astro';
+import { getPublishedPosts } from '../../lib/blog';
+
+const posts = await getPublishedPosts();
+---
+
+<BaseLayout
+  title="Blog — Eleven30"
+  description="Design decisions, the occasional teardown, and what I got wrong last month."
+  path="/blog/"
+>
+  <section class="bg-paper py-20">
+    <div class="mx-auto max-w-[900px] px-8">
+      <div class="mb-4 font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-subtle">
+        Blog
+      </div>
+      <h1 class="m-0 font-display text-display-lg font-semibold">Notes on building it.</h1>
+      <p class="mt-5 max-w-[58ch] text-body-lg text-fg-muted">
+        Design decisions, the occasional teardown, and what I got wrong last month.
+      </p>
+      <div class="mt-11 flex flex-col border-t border-hairline">
+        {posts.map((post) => <PostRow post={post} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

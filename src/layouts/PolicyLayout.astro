@@ -1,0 +1,44 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import Prose from '../components/Prose.astro';
+import { SITE } from '../config/site';
+import { formatDate } from '../lib/blog';
+import type { AppEntry, PolicyEntry } from '../lib/collections';
+
+interface Props {
+  policy: PolicyEntry;
+  app: AppEntry;
+}
+
+const { policy, app } = Astro.props;
+const { Content } = await render(policy);
+
+const path = `/apps/${app.id}/privacy/`;
+const description = `Privacy policy for ${app.data.name}: what the app collects, why, and how to reach me with questions.`;
+
+const lastUpdated = formatDate(policy.data.lastUpdated);
+---
+
+<BaseLayout title={`${app.data.name} — Privacy Policy`} description={description} path={path}>
+  <article class="max-w-reading mx-auto px-8 py-16">
+    <div class="font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-subtle">Legal</div>
+    <h1 class="mt-4 text-display-lg font-display font-semibold">Privacy policy</h1>
+    <p class="mt-4 font-data text-caption text-fg-subtle">
+      Last updated {lastUpdated} {'·'} applies to {app.data.name}
+    </p>
+    <div class="mt-12">
+      <Prose><Content /></Prose>
+    </div>
+    <div class="mt-12 border-t border-hairline pt-8 text-body-lg text-fg-muted">
+      <p>
+        Questions about this policy or your data reach me directly at{' '}
+        <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
+      </p>
+      <p class="mt-6 text-caption text-fg-subtle">
+        This page is a design placeholder written in plain language, not reviewed legal copy. Have a
+        lawyer check it before you submit to the app stores.
+      </p>
+    </div>
+  </article>
+</BaseLayout>

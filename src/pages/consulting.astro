@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import Button from '../components/Button.astro';
+import { services } from '../data/services';
+---
+
+<BaseLayout
+  title="Consulting — Eleven30"
+  description="One client at a time. I ship the thing, then hand you the keys."
+  path="/consulting/"
+>
+  <Section pad="py-[72px]">
+    <div class="max-w-[58ch]">
+      <div class="mb-4 font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-subtle">
+        Consulting
+      </div>
+      <h1 class="m-0 text-balance font-display text-display-lg font-semibold">
+        One client at a time. I ship the thing, then hand you the keys.
+      </h1>
+      <p class="mt-5 text-body-lg text-fg-muted">
+        Twenty-five years of web and mobile — product design, front end, and the unglamorous parts
+        in between. I work directly with whoever owns the outcome. No account manager, no bench.
+      </p>
+    </div>
+    <div class="mt-12 grid gap-5" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))">
+      {services.map((s) => <FeatureCard icon={s.icon} title={s.title} body={s.body} />)}
+    </div>
+  </Section>
+
+  <Section tone="bold" pad="py-[72px]">
+    <div class="grid items-center gap-14" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)">
+      <div>
+        <h2 class="m-0 font-display text-display-md font-semibold">Currently taking one project for Q1.</h2>
+        <p class="mt-4 max-w-[46ch] text-body-lg opacity-90">
+          Tell me what you're building and when you need it. I'll tell you honestly whether I'm the
+          right person.
+        </p>
+      </div>
+      <div class="flex flex-wrap justify-end gap-3">
+        <Button size="lg" variant="secondary" href="/contact/">Start a conversation</Button>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>
