@@ -14,7 +14,10 @@ export default defineConfig({
   prerenderConflictBehavior: 'error',
   adapter: cloudflare(),
   integrations: [react(), sitemap({ filter: (page) => !page.includes('/api/') })],
-  vite: { plugins: [tailwindcss()] },
+  vite: {
+    plugins: [tailwindcss()],
+    server: { watch: { ignored: ['**/.worktrees/**'] } },
+  },
   fonts: [
     { provider: fontProviders.google(), name: 'Instrument Sans',  cssVariable: '--font-instrument-sans',  weights: ['400 700'], styles: ['normal', 'italic'], subsets: ['latin'] },
     { provider: fontProviders.google(), name: 'Instrument Serif', cssVariable: '--font-instrument-serif', weights: [400],       styles: ['normal', 'italic'], subsets: ['latin'] },

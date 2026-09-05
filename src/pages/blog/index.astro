@@ -12,11 +12,16 @@ const posts = await getPublishedPosts();
   path="/blog/"
 >
   <section class="bg-paper py-20">
-    <div class="mx-auto max-w-[900px] px-8">
+    <div class="mx-auto max-w-[900px] px-[clamp(20px,4vw,32px)]">
       <div class="mb-4 font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-subtle">
         Blog
       </div>
-      <h1 class="m-0 font-display text-display-lg font-semibold">Notes on building it.</h1>
+      <h1
+        class="m-0 font-display font-semibold"
+        style="font-size: clamp(30px, 5.6vw, var(--text-display-lg)); line-height: 1.08; letter-spacing: var(--ls-display-lg);"
+      >
+        Notes on building it.
+      </h1>
       <p class="mt-5 max-w-[58ch] text-body-lg text-fg-muted">
         Design decisions, the occasional teardown, and what I got wrong last month.
       </p>

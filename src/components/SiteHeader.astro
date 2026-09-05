@@ -2,6 +2,7 @@
 import Monogram from './Monogram.astro';
 import Wordmark from './Wordmark.astro';
 import Button from './Button.astro';
+import Icon from './Icon.astro';
 
 interface NavItem {
   label: string;
@@ -24,12 +25,13 @@ const pathname = Astro.url.pathname;
   class="sticky top-0 z-20 border-b border-hairline"
   style="background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(12px);"
 >
-  <div class="max-w-shell mx-auto px-8 h-16 flex items-center justify-between gap-8">
+  <div class="max-w-shell mx-auto px-[clamp(20px,4vw,32px)] h-16 flex items-center justify-between gap-8">
     <a href="/" class="inline-flex items-center gap-2.5">
       <Monogram size={28} />
       <Wordmark size={20} />
     </a>
-    <nav class="flex items-center gap-0.5">
+
+    <nav class="e30-nav-desktop flex items-center gap-0.5">
       {navItems.map((item) => {
         const active = item.activeWhen(pathname);
         return (
@@ -45,5 +47,108 @@ const pathname = Astro.url.pathname;
       <div class="w-2.5"></div>
       <Button size="sm" href="/apps/launch-window/">Join the beta</Button>
     </nav>
+
+    {/*
+      A native <details>/<summary> disclosure rather than a script-driven
+      toggle: this site ships zero client JS outside of /contact/ (enforced
+      by scripts/verify-build.mjs), and <details> gets open/close behavior,
+      keyboard support and correct implicit aria-expanded semantics from the
+      browser for free — no aria-expanded is set explicitly below because an
+      author-supplied value would freeze at "false" forever without a script
+      to update it; omitting it lets the browser supply the live one.
+    */}
+    <details class="e30-nav-mobile">
+      <summary
+        class="e30-nav-toggle-btn"
+        aria-label="Menu"
+        style="width: 44px; height: 44px; border: 1px solid var(--border-hairline); border-radius: var(--radius-md); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; list-style: none;"
+      >
+        <span class="e30-nav-icon-closed" aria-hidden="true">
+          <Icon name="menu-2" size={20} class="text-icon" />
+        </span>
+        <span class="e30-nav-icon-open" aria-hidden="true">
+          <Icon name="x" size={20} class="text-icon" />
+        </span>
+      </summary>
+
+      <nav class="e30-nav-panel" aria-label="Mobile">
+        {navItems.map((item) => {
+          const active = item.activeWhen(pathname);
+          return (
+            <a
+              href={item.href}
+              class={`flex items-center justify-between border-b border-hairline hover:bg-ink-050 ${
+                active ? 'text-fg font-medium' : 'text-fg-muted hover:text-fg'
+              }`}
+              style="min-height: 48px;"
+            >
+              {item.label}
+              <Icon name="chevron-right" size={16} class={active ? 'text-icon-accent' : 'text-icon-muted'} />
+            </a>
+          );
+        })}
+        <div style="height: 12px;" />
+        <Button size="lg" href="/apps/launch-window/" fullWidth>Join the beta</Button>
+      </nav>
+    </details>
   </div>
 </header>
+
+<style>
+  /* Desktop is the default; the ≤820px mobile nav swaps in via media query
+     below. Kept as a plain @media block (rather than Tailwind's default `md`
+     breakpoint, which is 768px) so the cutoff matches the 820px spec
+     exactly. */
+  .e30-nav-mobile {
+    display: none;
+  }
+
+  /* Cross-browser removal of the default disclosure triangle — Chrome/Safari
+     render it as a ::-webkit-details-marker even once `list-style: none` (set
+     inline above) has taken care of Firefox. */
+  summary.e30-nav-toggle-btn::-webkit-details-marker {
+    display: none;
+  }
+
+  .e30-nav-icon-open {
+    display: none;
+  }
+
+  /* The panel overlays the page below the sticky header rather than pushing
+     it down — `header` (sticky) is the nearest positioned ancestor, so this
+     resolves against its box: full header width, flush under the 64px bar. */
+  .e30-nav-panel {
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    border-top: 1px solid var(--border-hairline);
+    background: var(--paper);
+    padding: 8px clamp(20px, 4vw, 32px) 20px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+  }
+
+  @media (max-width: 820px) {
+    .e30-nav-desktop {
+      display: none;
+    }
+
+    .e30-nav-mobile {
+      display: block;
+    }
+  }
+
+  details[open] > .e30-nav-panel {
+    display: flex;
+  }
+
+  details[open] .e30-nav-icon-closed {
+    display: none;
+  }
+
+  details[open] .e30-nav-icon-open {
+    display: inline;
+  }
+</style>

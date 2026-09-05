@@ -26,14 +26,17 @@ const jsonLd = {
 
 <BaseLayout title="Eleven30" description={SITE.description} path="/" jsonLd={jsonLd}>
   <Section pad="pt-24 pb-21">
-    <div class="grid items-center gap-16" style="grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr)">
+    <div
+      class="grid items-center"
+      style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: clamp(36px, 5vw, 64px);"
+    >
       <div>
         <div class="mb-5 font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-subtle">
           {SITE.tagline}
         </div>
         <h1
           class="m-0 font-display font-semibold text-balance"
-          style="font-size: clamp(40px, 5.2vw, 66px); line-height: 1.04; letter-spacing: -0.035em"
+          style="font-size: clamp(34px, 6.4vw, 66px); line-height: 1.04; letter-spacing: -0.035em"
         >
           Small apps, built by one person, finished properly.
         </h1>
@@ -53,25 +56,39 @@ const jsonLd = {
         dimensions="1290 × 2796"
         aspect="9 / 17"
         radius="30px"
+        class="max-[820px]:w-full max-[820px]:max-w-[300px] max-[820px]:justify-self-center"
       />
     </div>
   </Section>
 
   <Section tone="sunken">
     <div class="mb-8 flex items-baseline justify-between gap-6">
-      <h2 class="m-0 font-display text-display-md font-semibold">The apps</h2>
+      <h2
+        class="m-0 font-display font-semibold"
+        style="font-size: clamp(24px, 4vw, var(--text-display-md)); line-height: var(--lh-display-md); letter-spacing: var(--ls-display-md);"
+      >
+        The apps
+      </h2>
       <a href="/apps/" class="text-body text-fg-accent">All apps →</a>
     </div>
-    <div class="grid gap-5" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr))">
+    <div class="grid gap-5" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr))">
       {apps.map((app) => <AppCard app={app} layout="grid" />)}
     </div>
   </Section>
 
   <Section>
-    <div class="grid gap-14" style="grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr)">
+    <div
+      class="grid"
+      style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(36px, 5vw, 56px);"
+    >
       <div>
         <div class="mb-2 flex items-baseline justify-between gap-6">
-          <h2 class="m-0 font-display text-display-md font-semibold">Recent writing</h2>
+          <h2
+            class="m-0 font-display font-semibold"
+            style="font-size: clamp(24px, 4vw, var(--text-display-md)); line-height: var(--lh-display-md); letter-spacing: var(--ls-display-md);"
+          >
+            Recent writing
+          </h2>
           <a href="/blog/" class="text-body text-fg-accent">All posts →</a>
         </div>
         <div class="flex flex-col">
@@ -110,12 +127,15 @@ const jsonLd = {
   </Section>
 
   <Section tone="deep" pad="py-22">
-    <div class="grid items-center gap-16" style="grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr)">
+    <div
+      class="grid items-center"
+      style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(36px, 5vw, 64px);"
+    >
       <div>
         <div class="mb-[18px] font-data text-micro uppercase tracking-[var(--ls-micro)] opacity-65">
           About
         </div>
-        <p class="m-0 font-editorial text-[32px] leading-[1.3] tracking-[-0.01em]">
+        <p class="m-0 font-editorial text-[clamp(24px,3.4vw,32px)] leading-[1.3] tracking-[-0.01em]">
           Twenty-five years of shipping other people's roadmaps taught me what I actually wanted to
           build: small, finished software that respects the person holding the phone.
         </p>
@@ -130,6 +150,7 @@ const jsonLd = {
         dimensions="1600 × 1200"
         aspect="4 / 3"
         onDark
+        class="max-[820px]:w-full max-[820px]:max-w-[420px] max-[820px]:justify-self-center"
       />
     </div>
   </Section>

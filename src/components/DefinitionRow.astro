@@ -6,7 +6,12 @@ interface Props {
 const { label } = Astro.props;
 ---
 
-<div class="grid gap-6 items-baseline" style="grid-template-columns: 150px minmax(0,1fr)">
-  <span class="font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-accent">{label}</span>
-  <span><slot /></span>
+<div class="flex flex-wrap items-baseline" style="gap: 8px 24px">
+  <span
+    class="font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-accent"
+    style="flex: 0 0 auto; min-width: 126px"
+  >
+    {label}
+  </span>
+  <span style="flex: 1 1 280px"><slot /></span>
 </div>

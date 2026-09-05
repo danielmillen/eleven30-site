@@ -32,7 +32,7 @@ const jsonLd = {
 ---
 
 <BaseLayout title={post.data.title} description={post.data.description} path={path} ogType="article" jsonLd={jsonLd}>
-  <article class="max-w-reading mx-auto px-8 py-16">
+  <article class="max-w-reading mx-auto px-[clamp(20px,4vw,32px)] py-16">
     <a href="/blog/" class="text-label text-fg-muted">{'←'} All posts</a>
     <div class="mt-6 flex flex-wrap items-center gap-3 font-data text-caption text-fg-subtle">
       <span>{date}</span>
@@ -45,7 +45,12 @@ const jsonLd = {
         </>
       )}
     </div>
-    <h1 class="mt-4 text-display-lg font-display font-semibold text-balance">{post.data.title}</h1>
+    <h1
+      class="mt-4 font-display font-semibold text-balance"
+      style="font-size: clamp(30px, 5.6vw, var(--text-display-lg)); line-height: 1.08; letter-spacing: var(--ls-display-lg);"
+    >
+      {post.data.title}
+    </h1>
     <p class="mt-5 text-body-lg text-fg-muted">{post.data.description}</p>
     <hr class="my-10 border-t border-hairline" />
     <Prose><Content /></Prose>

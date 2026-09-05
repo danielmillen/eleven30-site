@@ -14,7 +14,12 @@ import { nowLong, nowUpdated } from '../data/now';
     <div class="mb-4 font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-subtle">
       Now · updated {nowUpdated}
     </div>
-    <h1 class="m-0 font-display text-display-lg font-semibold">What I'm working on right now.</h1>
+    <h1
+      class="m-0 font-display font-semibold"
+      style="font-size: clamp(30px, 5.6vw, var(--text-display-lg)); line-height: 1.08; letter-spacing: var(--ls-display-lg);"
+    >
+      What I'm working on right now.
+    </h1>
     <p class="mt-5 max-w-[56ch] text-body-lg text-fg-muted">
       A short, honest list. I update it when it stops being true.
     </p>
