@@ -44,8 +44,8 @@ const footerColumns: FooterColumn[] = [
 
 <footer class="bg-inverse text-fg-inverse">
   <div
-    class="max-w-shell mx-auto px-[clamp(20px,4vw,32px)] pt-16 pb-10 grid"
-    style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: clamp(32px, 4vw, 48px);"
+    class="max-w-shell mx-auto px-[clamp(20px,4vw,32px)] pt-16 pb-10 e30-footer-grid"
+    style="gap: clamp(32px, 4vw, 48px);"
   >
     <div>
       <Wordmark size={22} tone="light" />
@@ -79,3 +79,20 @@ const footerColumns: FooterColumn[] = [
     <span>eleven30.xyz</span>
   </div>
 </footer>
+
+<style>
+  /* Below 821px the columns stack; at/above, the brand column keeps its
+     original wider share. A plain @media step (matching the 820px cutoff
+     used elsewhere) rather than auto-fit avoids auto-fit's inherent
+     3-then-1 orphan-wrap band at intermediate widths. */
+  .e30-footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 821px) {
+    .e30-footer-grid {
+      grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

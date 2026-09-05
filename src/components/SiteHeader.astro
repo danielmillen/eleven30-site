@@ -72,16 +72,21 @@ const pathname = Astro.url.pathname;
       </summary>
 
       <nav class="e30-nav-panel" aria-label="Mobile">
-        {navItems.map((item) => (
-          <a
-            href={item.href}
-            class="flex items-center justify-between text-body text-fg-muted hover:text-fg hover:bg-ink-050 border-b border-hairline"
-            style="min-height: 48px;"
-          >
-            {item.label}
-            <Icon name="chevron-right" size={16} class="text-icon-muted" />
-          </a>
-        ))}
+        {navItems.map((item) => {
+          const active = item.activeWhen(pathname);
+          return (
+            <a
+              href={item.href}
+              class={`flex items-center justify-between border-b border-hairline hover:bg-ink-050 ${
+                active ? 'text-fg font-medium' : 'text-fg-muted hover:text-fg'
+              }`}
+              style="min-height: 48px;"
+            >
+              {item.label}
+              <Icon name="chevron-right" size={16} class={active ? 'text-icon-accent' : 'text-icon-muted'} />
+            </a>
+          );
+        })}
         <div style="height: 12px;" />
         <Button size="lg" href="/apps/launch-window/" fullWidth>Join the beta</Button>
       </nav>
