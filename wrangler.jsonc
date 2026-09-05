@@ -5,5 +5,12 @@
   "assets": {
     "html_handling": "force-trailing-slash",
     "not_found_handling": "404-page"
+  },
+  "preview_urls": true,
+  "observability": {
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true
+    }
   }
 }
