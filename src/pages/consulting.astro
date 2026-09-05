@@ -16,7 +16,10 @@ import { services } from '../data/services';
       <div class="mb-4 font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-subtle">
         Consulting
       </div>
-      <h1 class="m-0 text-balance font-display text-display-lg font-semibold">
+      <h1
+        class="m-0 text-balance font-display font-semibold"
+        style="font-size: clamp(30px, 5.6vw, var(--text-display-lg)); line-height: 1.08; letter-spacing: var(--ls-display-lg);"
+      >
         One client at a time. I ship the thing, then hand you the keys.
       </h1>
       <p class="mt-5 text-body-lg text-fg-muted">
@@ -30,15 +33,23 @@ import { services } from '../data/services';
   </Section>
 
   <Section tone="bold" pad="py-[72px]">
-    <div class="grid items-center gap-14" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)">
+    <div
+      class="grid items-center"
+      style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: clamp(28px, 4vw, 56px);"
+    >
       <div>
-        <h2 class="m-0 font-display text-display-md font-semibold">Currently taking one project for Q1.</h2>
+        <h2
+          class="m-0 font-display font-semibold"
+          style="font-size: clamp(24px, 4vw, var(--text-display-md)); line-height: var(--lh-display-md); letter-spacing: var(--ls-display-md);"
+        >
+          Currently taking one project for Q1.
+        </h2>
         <p class="mt-4 max-w-[46ch] text-body-lg opacity-90">
           Tell me what you're building and when you need it. I'll tell you honestly whether I'm the
           right person.
         </p>
       </div>
-      <div class="flex flex-wrap justify-end gap-3">
+      <div class="flex flex-wrap justify-start gap-3">
         <Button size="lg" variant="secondary" href="/contact/">Start a conversation</Button>
       </div>
     </div>

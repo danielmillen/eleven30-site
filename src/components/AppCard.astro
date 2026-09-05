@@ -35,11 +35,14 @@ const href = `/apps/${app.id}/`;
     </Card>
   ) : (
     <Card interactive padding="lg" href={href}>
-      <div class="grid items-center gap-7" style="grid-template-columns: 88px minmax(0, 1fr) auto">
-        <div class="e30-shot flex shrink-0 items-center justify-center" style="width: 88px; height: 88px; border-radius: 20px">
+      <div class="flex flex-wrap items-center" style="gap: 20px 28px">
+        <div
+          class="e30-shot flex shrink-0 items-center justify-center"
+          style="width: 72px; height: 72px; border-radius: 18px; flex: 0 0 auto"
+        >
           <Icon name={app.data.icon} size={24} class="text-icon-muted" />
         </div>
-        <div>
+        <div style="flex: 1 1 260px">
           <div class="flex flex-wrap items-center gap-3">
             <span class="text-title font-display font-semibold">{app.data.name}</span>
             <Badge tone={status.tone}>{status.label}</Badge>
@@ -49,7 +52,9 @@ const href = `/apps/${app.id}/`;
             <span>{platformText}</span>
           </div>
         </div>
-        <Icon name="chevron-right" size={20} class="text-icon-muted" />
+        <span style="flex: 0 0 auto">
+          <Icon name="chevron-right" size={20} class="text-icon-muted" />
+        </span>
       </div>
     </Card>
   )

@@ -16,12 +16,18 @@ import { elsewhere } from '../data/elsewhere';
   path="/about/"
 >
   <Section pad="pt-[72px] pb-20">
-    <div class="grid items-start gap-16" style="grid-template-columns: minmax(0, 1fr) minmax(0, 0.76fr)">
+    <div
+      class="grid items-start"
+      style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(36px, 5vw, 64px);"
+    >
       <div>
         <div class="mb-4 font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-subtle">
           About
         </div>
-        <h1 class="m-0 text-balance font-display text-display-lg font-semibold">
+        <h1
+          class="m-0 text-balance font-display font-semibold"
+          style="font-size: clamp(30px, 5.6vw, var(--text-display-lg)); line-height: 1.08; letter-spacing: var(--ls-display-lg);"
+        >
           I'm [your name] — a solo developer in Florida, 25 years in.
         </h1>
         <div class="mt-7 flex max-w-[62ch] flex-col gap-5 text-body-lg text-fg-muted">
@@ -45,7 +51,13 @@ import { elsewhere } from '../data/elsewhere';
         </div>
       </div>
       <div class="flex flex-col gap-5">
-        <PlaceholderMedia icon="user" caption="Portrait" dimensions="1200 × 1500" aspect="4 / 5" />
+        <PlaceholderMedia
+          icon="user"
+          caption="Portrait"
+          dimensions="1200 × 1500"
+          aspect="4 / 5"
+          class="max-[820px]:w-full max-[820px]:max-w-[420px]"
+        />
         <Card padding="md">
           <div class="mb-3 font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-subtle">
             Elsewhere
@@ -66,7 +78,12 @@ import { elsewhere } from '../data/elsewhere';
   </Section>
 
   <Section tone="sunken" pad="py-[72px]">
-    <h2 class="m-0 mb-7 font-display text-display-md font-semibold">How I work</h2>
+    <h2
+      class="m-0 mb-7 font-display font-semibold"
+      style="font-size: clamp(24px, 4vw, var(--text-display-md)); line-height: var(--lh-display-md); letter-spacing: var(--ls-display-md);"
+    >
+      How I work
+    </h2>
     <div class="grid gap-5" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr))">
       {principles.map((p) => <FeatureCard icon={p.icon} title={p.title} body={p.body} />)}
     </div>

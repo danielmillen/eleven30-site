@@ -19,7 +19,7 @@ const widthClass = width === 'reading' ? 'max-w-reading' : 'max-w-shell';
 ---
 
 <section class={`${toneClass} ${pad}`}>
-  <div class={`${widthClass} mx-auto px-8`}>
+  <div class={`${widthClass} mx-auto px-[clamp(20px,4vw,32px)]`}>
     <slot />
   </div>
 </section>

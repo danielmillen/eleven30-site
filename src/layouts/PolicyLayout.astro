@@ -21,9 +21,14 @@ const lastUpdated = formatDate(policy.data.lastUpdated);
 ---
 
 <BaseLayout title={`${app.data.name} — Privacy Policy`} description={description} path={path}>
-  <article class="max-w-reading mx-auto px-8 py-16">
+  <article class="max-w-reading mx-auto px-[clamp(20px,4vw,32px)] py-16">
     <div class="font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-subtle">Legal</div>
-    <h1 class="mt-4 text-display-lg font-display font-semibold">Privacy policy</h1>
+    <h1
+      class="mt-4 font-display font-semibold"
+      style="font-size: clamp(30px, 5.6vw, var(--text-display-lg)); line-height: 1.08; letter-spacing: var(--ls-display-lg);"
+    >
+      Privacy policy
+    </h1>
     <p class="mt-4 font-data text-caption text-fg-subtle">
       Last updated {lastUpdated} {'·'} applies to {app.data.name}
     </p>

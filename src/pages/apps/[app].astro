@@ -76,7 +76,10 @@ const Body = APP_BODIES[app.id];
 >
   <Section>
     <a href="/apps/" class="mb-8 inline-block text-label text-fg-muted">← All apps</a>
-    <div class="grid items-center gap-14" style="grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr)">
+    <div
+      class="grid items-center"
+      style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(36px, 5vw, 64px);"
+    >
       <div>
         <div class="mb-6 flex flex-wrap items-center gap-3.5">
           <div
@@ -87,7 +90,12 @@ const Body = APP_BODIES[app.id];
           </div>
           <Badge tone={status.tone}>{status.label}</Badge>
         </div>
-        <h1 class="m-0 text-balance font-display text-display-lg font-semibold">{app.data.name}</h1>
+        <h1
+          class="m-0 text-balance font-display font-semibold"
+          style="font-size: clamp(30px, 5.6vw, var(--text-display-lg)); line-height: 1.08; letter-spacing: var(--ls-display-lg);"
+        >
+          {app.data.name}
+        </h1>
         <p class="mt-5 max-w-[50ch] text-body-lg text-fg-muted">{app.data.tagline}</p>
         <p class="mt-4 max-w-[60ch] text-fg-muted">{app.data.description}</p>
         <div class="mt-8 flex flex-wrap gap-3">
@@ -111,6 +119,11 @@ const Body = APP_BODIES[app.id];
         dimensions="1290 × 2796"
         aspect="9 / 17"
         radius="30px"
+        class={
+          app.id === 'launch-window'
+            ? 'max-[820px]:w-full max-[820px]:max-w-[300px] max-[820px]:justify-self-center'
+            : 'max-[820px]:w-full max-[820px]:max-w-[270px] max-[820px]:justify-self-center'
+        }
       />
     </div>
   </Section>

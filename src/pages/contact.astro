@@ -40,7 +40,10 @@ const contactRows = [
       <div class="mb-4 font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-subtle">
         Support
       </div>
-      <h1 class="m-0 text-balance font-display text-display-lg font-semibold">
+      <h1
+        class="m-0 text-balance font-display font-semibold"
+        style="font-size: clamp(30px, 5.6vw, var(--text-display-lg)); line-height: 1.08; letter-spacing: var(--ls-display-lg);"
+      >
         Something not working? Write to me.
       </h1>
       <p class="mt-5 text-body-lg text-fg-muted">
@@ -48,7 +51,10 @@ const contactRows = [
       </p>
     </div>
 
-    <div class="mt-12 grid items-start gap-8" style="grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr)">
+    <div
+      class="mt-12 grid items-start"
+      style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(24px, 3vw, 32px);"
+    >
       <div class="flex flex-col gap-3">
         {
           faqs.map((faq) => (
