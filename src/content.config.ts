@@ -25,6 +25,7 @@ const apps = defineCollection({
     appStoreUrl: z.url().optional(),
     playStoreUrl: z.url().optional(),
     icon: z.string(),
+    iconImage: z.string().optional(),
     screenshots: z.array(z.string()).default([]),
     accentColor: z.string().optional(),
     order: z.number().default(0),

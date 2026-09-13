@@ -8,6 +8,7 @@ description: >-
 platforms: [ios, android]
 status: development
 icon: rocket
+iconImage: /app-icons/launch-window.svg
 order: 1
 ---
 

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <radialGradient id="blueGlow" cx="18%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#1f5f7a" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#1f5f7a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orangeGlow" cx="50%" cy="95%" r="65%">
+      <stop offset="0%" stop-color="#e8571f" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#e8571f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="noseGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#bfe6f7"/>
+      <stop offset="100%" stop-color="#7cc7e8"/>
+    </linearGradient>
+    <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#eef4f8"/>
+      <stop offset="100%" stop-color="#c3ccd6"/>
+    </linearGradient>
+    <linearGradient id="flameGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fdf3d0"/>
+      <stop offset="45%" stop-color="#f7b731"/>
+      <stop offset="100%" stop-color="#e8571f"/>
+    </linearGradient>
+    <radialGradient id="flameOuterGradient" cx="50%" cy="0%" r="100%">
+      <stop offset="0%" stop-color="#f7902e"/>
+      <stop offset="100%" stop-color="#e8571f"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="1024" fill="#0a0f1c"/>
+  <rect width="1024" height="1024" fill="url(#blueGlow)"/>
+  <rect width="1024" height="1024" fill="url(#orangeGlow)"/>
+
+  <!-- Stars -->
+  <g fill="#ffffff">
+    <circle cx="150" cy="180" r="4"/>
+    <circle cx="860" cy="140" r="4"/>
+    <circle cx="740" cy="260" r="3"/>
+    <circle cx="230" cy="330" r="3"/>
+    <circle cx="900" cy="420" r="3.5"/>
+    <circle cx="120" cy="520" r="3"/>
+    <circle cx="880" cy="700" r="3"/>
+  </g>
+
+  <!-- Dashed orbit trail -->
+  <path d="M405,175 C455,300 330,470 375,560 C405,620 420,650 430,690"
+        fill="none" stroke="#b5551f" stroke-width="4" stroke-dasharray="14 14" opacity="0.8"/>
+
+  <!-- Flame -->
+  <path d="M512,680 C560,720 575,790 512,830 C449,790 464,720 512,680 Z" fill="url(#flameOuterGradient)"/>
+  <path d="M512,700 C538,730 545,780 512,810 C479,780 486,730 512,700 Z" fill="url(#flameGradient)"/>
+
+  <!-- Fins -->
+  <path d="M455,525 L345,658 L455,658 Z" fill="#f4692b"/>
+  <path d="M570,525 L683,658 L570,658 Z" fill="#f4692b"/>
+
+  <!-- Rocket body -->
+  <path d="M455,420 L570,420 L590,658 L455,658 Z" fill="url(#bodyGradient)"/>
+
+  <!-- Base -->
+  <rect x="455" y="658" width="135" height="22" fill="#12203a"/>
+
+  <!-- Nose cone -->
+  <path d="M512,240 C548,300 570,370 570,420 L455,420 C455,370 477,300 512,240 Z" fill="url(#noseGradient)"/>
+
+  <!-- Window -->
+  <circle cx="512" cy="480" r="56" fill="#5bc0ea"/>
+  <circle cx="512" cy="480" r="47" fill="#0d1b30"/>
+  <circle cx="497" cy="465" r="12" fill="#4a90c2"/>
+</svg>

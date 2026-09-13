@@ -70,6 +70,22 @@
   .e30-btn--critical:hover { background: var(--clay-500); }
   .e30-btn--critical:active { background: var(--clay-700); }
 
+  /* secondary/ghost read their color off --text-primary and --ink-* steps,
+     both tuned for a paper ground — on a deep accent ground (Section
+     tone="deep") that's near-black text and an invisible near-white hover
+     fill, so restate both against --text-on-ground instead. */
+  .bg-accent-deep .e30-btn--secondary:hover {
+    background: var(--ink-100);
+  }
+
+  .bg-accent-deep .e30-btn--ghost {
+    color: var(--text-on-ground);
+    border-color: rgba(251, 252, 249, 0.32);
+  }
+  .bg-accent-deep .e30-btn--ghost:hover {
+    background: rgba(251, 252, 249, 0.16);
+  }
+
   .e30-btn:active { transform: scale(var(--press-scale)); }
 
   .e30-btn:disabled,
