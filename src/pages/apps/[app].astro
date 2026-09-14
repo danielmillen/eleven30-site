@@ -28,7 +28,9 @@ const CAPTION_STATUS: Record<AppEntry['data']['status'], string> = {
 
 const status = STATUS_META[app.data.status];
 const platformText = app.data.platforms.map((platform) => PLATFORM_LABELS[platform]).join(' · ');
-const captionLine = `${platformText} · ${CAPTION_STATUS[app.data.status]}`;
+const captionLine =
+  `${platformText} · ${CAPTION_STATUS[app.data.status]}` +
+  (app.data.platformNote ? ` · ${app.data.platformNote}` : '');
 
 /**
  * Primary CTA. Released apps with a real store URL link to it; everything
@@ -42,7 +44,7 @@ const primaryCta =
     ? { label: 'Download', href: storeUrl }
     : app.data.status === 'released'
       ? { label: 'Download', href: undefined }
-      : { label: 'Join the beta', href: '/contact/' };
+      : { label: 'Beta coming soon', href: undefined };
 
 const appLinks = [
   { label: 'Privacy policy', icon: 'lock', href: `/apps/${app.id}/privacy/` },
@@ -83,10 +85,14 @@ const Body = APP_BODIES[app.id];
       <div>
         <div class="mb-6 flex flex-wrap items-center gap-3.5">
           <div
-            class="e30-shot flex shrink-0 items-center justify-center"
+            class={`flex shrink-0 items-center justify-center overflow-hidden ${app.data.iconImage ? '' : 'e30-shot'}`}
             style="width: 56px; height: 56px; border-radius: 13px"
           >
-            <Icon name={app.data.icon} size={24} class="text-icon-muted" />
+            {app.data.iconImage ? (
+              <img src={app.data.iconImage} width="56" height="56" alt="" class="h-full w-full object-cover" />
+            ) : (
+              <Icon name={app.data.icon} size={24} class="text-icon-muted" />
+            )}
           </div>
           <Badge tone={status.tone}>{status.label}</Badge>
         </div>
@@ -98,9 +104,17 @@ const Body = APP_BODIES[app.id];
         </h1>
         <p class="mt-5 max-w-[50ch] text-body-lg text-fg-muted">{app.data.tagline}</p>
         <p class="mt-4 max-w-[60ch] text-fg-muted">{app.data.description}</p>
-        <div class="mt-8 flex flex-wrap gap-3">
+        <div class="mt-8 flex flex-wrap items-center gap-3">
           {
-            primaryCta.href ? (
+            app.data.appStoreUrl ? (
+              <a href={app.data.appStoreUrl} aria-label="Download on the App Store">
+                <img
+                  src="/badges/app-store-badge.svg"
+                  alt="Download on the App Store"
+                  style="height: 52px; width: auto;"
+                />
+              </a>
+            ) : primaryCta.href ? (
               <Button size="lg" href={primaryCta.href}>
                 {primaryCta.label}
               </Button>
@@ -113,20 +127,35 @@ const Body = APP_BODIES[app.id];
         </div>
         <div class="mt-4 font-data text-caption text-fg-subtle">{captionLine}</div>
       </div>
-      <PlaceholderMedia
-        icon={app.data.icon}
-        caption="App screenshot"
-        dimensions="1290 × 2796"
-        aspect="9 / 17"
-        radius="30px"
-        class={
-          app.id === 'launch-window'
-            ? 'max-[820px]:w-full max-[820px]:max-w-[300px] max-[820px]:justify-self-center'
-            : 'max-[820px]:w-full max-[820px]:max-w-[270px] max-[820px]:justify-self-center'
-        }
-      />
+      {
+        app.data.screenshot ? (
+          <img
+            src={app.data.screenshot}
+            width="277"
+            height="600"
+            alt={`${app.data.name} screenshot`}
+            style="border-radius: 30px; height: 600px; width: auto; max-width: 100%;"
+            class="justify-self-center"
+          />
+        ) : (
+          <PlaceholderMedia
+            icon={app.data.icon}
+            caption="App screenshot"
+            dimensions="1290 × 2796"
+            aspect="9 / 17"
+            radius="30px"
+            class={
+              app.id === 'launch-window'
+                ? 'max-[820px]:w-full max-[820px]:max-w-[300px] max-[820px]:justify-self-center'
+                : 'max-[820px]:w-full max-[820px]:max-w-[270px] max-[820px]:justify-self-center'
+            }
+          />
+        )
+      }
     </div>
   </Section>
+
+  {Body && <Body app={app} />}
 
   <Section>
     <Card padding="lg">
@@ -149,6 +178,4 @@ const Body = APP_BODIES[app.id];
       </div>
     </Card>
   </Section>
-
-  {Body && <Body app={app} />}
 </BaseLayout>

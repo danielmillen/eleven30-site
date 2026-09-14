@@ -31,8 +31,8 @@ const tipFeatures = [
   },
   {
     icon: 'lock',
-    title: 'Nothing leaves the phone',
-    body: 'No account, no analytics, no receipts stored anywhere.',
+    title: 'Almost nothing leaves the phone',
+    body: 'No account, no receipts stored anywhere — the one exception is your advertiser ID, and only if you allow it.',
   },
 ];
 
@@ -42,15 +42,30 @@ const tipFeatures = [
 ---
 
 <Section tone="sunken">
-  <div class="grid gap-5" style="grid-template-columns: repeat(auto-fit, minmax(210px, 1fr))">
-    {
-      tipFeatures.map((feature) => (
-        <Card padding="md">
-          <Icon name={feature.icon} size={20} class="text-icon-accent" />
-          <div class="font-medium">{feature.title}</div>
-          <p class="m-0 text-label leading-normal text-fg-muted">{feature.body}</p>
-        </Card>
-      ))
-    }
+  <div
+    class="grid items-center"
+    style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: clamp(32px, 5vw, 56px);"
+  >
+    <div>
+      <h2 class="m-0 font-display text-display-md font-semibold tracking-[var(--ls-display-md)]">
+        Built for Rachel
+      </h2>
+      <p class="mt-5 text-body-lg text-fg-muted">
+        This one started as an audience of one. My wife, Rachel, used to juggle two or three tip apps at the
+        table, one of which ran a full-screen ad on launch and made her wait before she could even start. I
+        figured I could do better than that for her, so I did. If it's useful to you too, that's a bonus.
+      </p>
+    </div>
+    <div class="grid gap-4" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr))">
+      {
+        tipFeatures.map((feature) => (
+          <Card padding="md">
+            <Icon name={feature.icon} size={20} class="text-icon-accent" />
+            <div class="font-medium">{feature.title}</div>
+            <p class="m-0 text-label leading-normal text-fg-muted">{feature.body}</p>
+          </Card>
+        ))
+      }
+    </div>
   </div>
 </Section>

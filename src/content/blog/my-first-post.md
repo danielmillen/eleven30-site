@@ -8,13 +8,13 @@ draft: false
 
 <!-- Placeholder post — replace or delete. -->
 
-I live 40 minutes from a launch pad. Half the launches I've actually seen, I saw by accident — someone texted me a minute before the roll, and I got outside in time to catch a bright line going up over the trees.
+I live 40 minutes from a launch pad. Half the launches I've actually seen, I saw by accident — someone texted me a minute before the roll, and I got outside in time to catch a bright line going up over the trees. The rest I missed completely: the first I hear of most launches is the rocket itself, and by then it's too late to look up.
 
 The apps that exist tell you about every launch on Earth. That's a feed, not an answer. The question I have is smaller and more selfish: is something going up near me, and when?
 
-So the app starts from a place, not a rocket. Pick a launch site, or let it use where you are, and everything else sorts itself around that.
+So the app starts from a place, not a rocket. Pick a launch site, and everything else sorts itself around that.
 
-> Half the launches I've seen, I saw by accident.
+> Half the launches I've seen, I saw by accident. The rest I missed completely.
 
 The hard part isn't the timer. It's that launch times are a promise nobody can keep — windows shift by hours, scrubs happen at T-minus-30-seconds, and a countdown that keeps ticking toward a time that no longer exists is worse than no countdown at all.
 

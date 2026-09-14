@@ -1,7 +1,6 @@
 ---
 import Monogram from './Monogram.astro';
 import Wordmark from './Wordmark.astro';
-import Button from './Button.astro';
 import Icon from './Icon.astro';
 
 interface NavItem {
@@ -44,8 +43,6 @@ const pathname = Astro.url.pathname;
           </a>
         );
       })}
-      <div class="w-2.5"></div>
-      <Button size="sm" href="/apps/launch-window/">Join the beta</Button>
     </nav>
 
     {/*
@@ -87,8 +84,6 @@ const pathname = Astro.url.pathname;
             </a>
           );
         })}
-        <div style="height: 12px;" />
-        <Button size="lg" href="/apps/launch-window/" fullWidth>Join the beta</Button>
       </nav>
     </details>
   </div>

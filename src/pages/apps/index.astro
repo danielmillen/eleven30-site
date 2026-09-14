@@ -25,10 +25,6 @@ const apps = await getApps();
       >
         Everything I've shipped, and what's in testing.
       </h1>
-      <p class="mt-5 text-body-lg text-fg-muted">
-        Each app has its own page with screenshots, a support route and a privacy policy — the
-        things the app stores ask for, written in plain sentences.
-      </p>
     </div>
     <div class="mt-12 flex flex-col gap-5">
       {apps.map((app) => <AppCard app={app} layout="row" />)}

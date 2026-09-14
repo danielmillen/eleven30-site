@@ -3,9 +3,9 @@ export const SITE = {
   domain: 'eleven30.xyz',
   url: 'https://eleven30.xyz',
   tagline: 'Independent software · Florida',
-  description: 'Small apps, built by one person, finished properly.',
+  description: 'One person, every stage of software — building small apps, and a trusted technical advisor for everything else.',
   contactEmail: 'hello@eleven30.xyz',
   replyWindow: 'Within 2 business days',
   location: 'Florida, United States',
-  author: { name: '[Your name]', github: 'github.com/[handle]' },
+  author: { name: 'Dan Millen', github: 'github.com/danielmillen' },
 } as const;
