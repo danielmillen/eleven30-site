@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import Card from '../components/Card.astro';
 import FeatureCard from '../components/FeatureCard.astro';
-import PlaceholderMedia from '../components/PlaceholderMedia.astro';
 import Button from '../components/Button.astro';
 import Icon from '../components/Icon.astro';
 import { principles } from '../data/principles';
@@ -51,12 +50,13 @@ import { elsewhere } from '../data/elsewhere';
         </div>
       </div>
       <div class="flex flex-col gap-5">
-        <PlaceholderMedia
-          icon="user"
-          caption="Portrait"
-          dimensions="1200 × 1500"
-          aspect="4 / 5"
-          class="max-[820px]:w-full max-[820px]:max-w-[420px] max-[820px]:self-center"
+        <img
+          src="/portrait.jpg"
+          width="871"
+          height="1500"
+          alt="Dan Millen"
+          style="border-radius: 30px; height: 600px; width: 348px; max-width: 100%;"
+          class="max-[820px]:max-w-[420px] max-[820px]:self-center"
         />
         <Card padding="md">
           <div class="mb-3 font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-subtle">
