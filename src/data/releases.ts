@@ -13,33 +13,23 @@ export const releases: readonly Release[] = [
     version: "v2.0",
     upcoming: true,
     items: [
-      "Redesigned split-the-check flow",
-      "Faster entry with a larger keypad",
-      "A proper iPad layout",
-      "Round-the-total presets you can set once",
+      "New app icon and a complete visual face-lift",
+      "Rewritten from the ground up",
+      "Choose any tip percentage, not just the presets",
+      "Add a discount, by amount or percent, before tipping",
     ],
   },
   {
-    date: "28 Aug 2026",
-    app: "Launch Window",
-    version: "Beta 0.4",
-    items: [
-      "Home screen widget",
-      "Notification before the window opens",
-      "Offline schedule cache",
-    ],
-  },
-  {
-    date: "14 May 2026",
+    date: "18 Jul 2023",
     app: "Rachel's Tip Calculator",
-    version: "v1.4",
+    version: "v1.1",
     items: [
-      "Fixed rounding on very small checks",
-      "Dark mode contrast fixes",
+      "New app icon",
+      "Preferences now persist across sessions",
     ],
   },
   {
-    date: "09 Jan 2026",
+    date: "13 Jul 2023",
     app: "Rachel's Tip Calculator",
     version: "v1.0",
     items: [
