@@ -10,6 +10,7 @@ platforms: [ios]
 status: released
 icon: receipt
 iconImage: /app-icons/rachels-tip-calculator.svg
+screenshot: /screenshots/rachels-tip-calculator.jpg
 order: 2
 ---
 

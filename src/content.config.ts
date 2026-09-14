@@ -27,6 +27,7 @@ const apps = defineCollection({
     icon: z.string(),
     iconImage: z.string().optional(),
     screenshots: z.array(z.string()).default([]),
+    screenshot: z.string().optional(),
     accentColor: z.string().optional(),
     order: z.number().default(0),
   }),

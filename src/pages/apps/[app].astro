@@ -117,18 +117,35 @@ const Body = APP_BODIES[app.id];
         </div>
         <div class="mt-4 font-data text-caption text-fg-subtle">{captionLine}</div>
       </div>
-      <PlaceholderMedia
-        icon={app.data.icon}
-        caption="App screenshot"
-        dimensions="1290 × 2796"
-        aspect="9 / 17"
-        radius="30px"
-        class={
-          app.id === 'launch-window'
-            ? 'max-[820px]:w-full max-[820px]:max-w-[300px] max-[820px]:justify-self-center'
-            : 'max-[820px]:w-full max-[820px]:max-w-[270px] max-[820px]:justify-self-center'
-        }
-      />
+      {
+        app.data.screenshot ? (
+          <img
+            src={app.data.screenshot}
+            width="1320"
+            height="2868"
+            alt={`${app.data.name} screenshot`}
+            style="border-radius: 30px"
+            class={`h-auto w-full ${
+              app.id === 'launch-window'
+                ? 'max-[820px]:max-w-[300px] max-[820px]:justify-self-center'
+                : 'max-[820px]:max-w-[270px] max-[820px]:justify-self-center'
+            }`}
+          />
+        ) : (
+          <PlaceholderMedia
+            icon={app.data.icon}
+            caption="App screenshot"
+            dimensions="1290 × 2796"
+            aspect="9 / 17"
+            radius="30px"
+            class={
+              app.id === 'launch-window'
+                ? 'max-[820px]:w-full max-[820px]:max-w-[300px] max-[820px]:justify-self-center'
+                : 'max-[820px]:w-full max-[820px]:max-w-[270px] max-[820px]:justify-self-center'
+            }
+          />
+        )
+      }
     </div>
   </Section>
 
