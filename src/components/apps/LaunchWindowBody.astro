@@ -33,7 +33,7 @@ const launchSteps = [
     n: '1',
     icon: 'map-pin',
     title: 'Choose your sky',
-    body: 'Cape Canaveral, Vandenberg, Starbase — or just let it use where you are and sort the closest sites first.',
+    body: 'Cape Canaveral, Vandenberg, Starbase — pick the one you want to track.',
     shot: 'Site picker',
   },
   {
@@ -56,7 +56,7 @@ const launchFacts = [
   {
     icon: 'bell',
     title: 'A nudge, not a firehose',
-    body: 'One notification before the window opens. Not every schedule change.',
+    body: 'Three heads-ups — T-2 hours, T-30 minutes, T-5 minutes — plus one if it holds and one if it scrubs. Not every schedule change.',
   },
   {
     icon: 'wifi-off',
@@ -66,7 +66,7 @@ const launchFacts = [
   {
     icon: 'eye',
     title: 'Visibility, not just timing',
-    body: "Whether it's a daylight launch and roughly where to look from your spot.",
+    body: "Whether it's a daylight launch, so you know if there's actually something to see.",
   },
   {
     icon: 'user-off',
@@ -137,8 +137,9 @@ const launchFacts = [
         Built for people who look up
       </h2>
       <p class="mt-5 text-body-lg text-fg-muted">
-        I live in Florida. Half the launches I've seen, I saw by accident — someone texted me 40 seconds before
-        the roll. This is the app that texts you first.
+        I live in Florida. Half the launches I've seen, I saw by accident — someone texted me 40 seconds before the
+        roll. The rest I missed completely: the first I hear of most launches is the rocket itself, and by then
+        it's too late to look up. This is the app that texts you first.
       </p>
     </div>
     <div class="grid gap-4" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr))">
@@ -160,7 +161,6 @@ const launchFacts = [
     <div class="font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-accent">What it doesn't do</div>
     <ul class="m-0 mt-2 flex flex-col gap-2.5 pl-5 text-fg-muted">
       <li>No account required. Nothing to sign up for.</li>
-      <li>Your location stays on the device — it's used to sort launch sites, not stored on a server.</li>
       <li>No ads, no analytics resold to anyone.</li>
       <li>It won't promise a launch will happen. Weather wins.</li>
     </ul>

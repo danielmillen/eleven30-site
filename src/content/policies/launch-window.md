@@ -1,8 +1,8 @@
 ---
 appSlug: launch-window
 effectiveDate: 2026-08-28T00:00:00-04:00
-lastUpdated: 2026-08-28T00:00:00-04:00
-dataCollected: []
+lastUpdated: 2026-09-13T00:00:00-04:00
+dataCollected: ['Crash and error logs', 'Device identifiers']
 thirdParties: []
 childrenPolicy: false
 ---
@@ -13,12 +13,6 @@ Launch Window doesn't require an account, so I don't have your name, email addre
 
 If you contact support, I keep that email thread so I can help you — nothing more.
 
-## Location
-
-Launch Window can use your device location to sort launch sites by distance and estimate visibility. That happens on your device — I don't store your coordinates on a server, and I don't build a history of where you've been.
-
-You can decline the permission and choose a launch site manually. Everything else in the app still works.
-
 ## Launch data
 
 Upcoming launch information comes from public launch schedules. Times are estimates and change frequently — the app shows what the schedule says at the moment you look at it.
@@ -27,7 +21,7 @@ Upcoming launch information comes from public launch schedules. Times are estima
 
 No advertising SDKs, no third-party trackers, and no selling or sharing of data with data brokers.
 
-If I add basic crash reporting, it will be listed here before it ships, and it won't include anything that identifies you.
+I do collect basic crash and error logs, plus the device identifiers needed to run the app — nothing more, and none of it is sold or shared with anyone.
 
 ## Deleting your data
 

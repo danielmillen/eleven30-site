@@ -42,7 +42,7 @@ const primaryCta =
     ? { label: 'Download', href: storeUrl }
     : app.data.status === 'released'
       ? { label: 'Download', href: undefined }
-      : { label: 'Join the beta', href: '/contact/' };
+      : { label: 'Beta coming soon', href: undefined };
 
 const appLinks = [
   { label: 'Privacy policy', icon: 'lock', href: `/apps/${app.id}/privacy/` },
@@ -145,6 +145,8 @@ const Body = APP_BODIES[app.id];
     </div>
   </Section>
 
+  {Body && <Body app={app} />}
+
   <Section>
     <Card padding="lg">
       <div class="mb-1 font-data text-micro uppercase tracking-[var(--ls-micro)] text-fg-subtle">More</div>
@@ -166,6 +168,4 @@ const Body = APP_BODIES[app.id];
       </div>
     </Card>
   </Section>
-
-  {Body && <Body app={app} />}
 </BaseLayout>
