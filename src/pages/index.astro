@@ -14,6 +14,7 @@ import { SITE } from '../config/site';
 
 const apps = await getApps();
 const recentPosts = (await getPublishedPosts()).slice(0, 3);
+const launchWindow = apps.find((app) => app.id === 'launch-window');
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -50,14 +51,27 @@ const jsonLd = {
           <Button size="lg" variant="secondary" href="/about/">About me</Button>
         </div>
       </div>
-      <PlaceholderMedia
-        icon="rocket"
-        caption="Countdown screen"
-        dimensions="1290 × 2796"
-        aspect="9 / 17"
-        radius="30px"
-        class="max-[820px]:w-full max-[820px]:max-w-[300px] max-[820px]:justify-self-center"
-      />
+      {
+        launchWindow?.data.screenshot ? (
+          <img
+            src={launchWindow.data.screenshot}
+            width="277"
+            height="600"
+            alt={`${launchWindow.data.name} screenshot`}
+            style="border-radius: 30px; height: 600px; width: auto; max-width: 100%;"
+            class="justify-self-center"
+          />
+        ) : (
+          <PlaceholderMedia
+            icon="rocket"
+            caption="Countdown screen"
+            dimensions="1290 × 2796"
+            aspect="9 / 17"
+            radius="30px"
+            class="max-[820px]:w-full max-[820px]:max-w-[300px] max-[820px]:justify-self-center"
+          />
+        )
+      }
     </div>
   </Section>
 

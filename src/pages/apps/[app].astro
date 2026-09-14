@@ -121,15 +121,11 @@ const Body = APP_BODIES[app.id];
         app.data.screenshot ? (
           <img
             src={app.data.screenshot}
-            width="1320"
-            height="2868"
+            width="277"
+            height="600"
             alt={`${app.data.name} screenshot`}
-            style="border-radius: 30px"
-            class={`h-auto w-full ${
-              app.id === 'launch-window'
-                ? 'max-[820px]:max-w-[300px] max-[820px]:justify-self-center'
-                : 'max-[820px]:max-w-[270px] max-[820px]:justify-self-center'
-            }`}
+            style="border-radius: 30px; height: 600px; width: auto; max-width: 100%;"
+            class="justify-self-center"
           />
         ) : (
           <PlaceholderMedia
