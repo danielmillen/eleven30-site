@@ -10,12 +10,14 @@ interface Props {
   description: string;
   path: string; // used for canonical + og:url, e.g. "/apps/launch-window/"
   ogType?: string;
+  image?: string; // site-root-relative path to a 1200x630 social preview image
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title, description, path, ogType = 'website', jsonLd } = Astro.props;
+const { title, description, path, ogType = 'website', image = '/og-image.png', jsonLd } = Astro.props;
 
 const canonicalHref = new URL(path, Astro.site).href;
+const imageHref = new URL(image, Astro.site).href;
 
 /**
  * `set:html` does not escape, so replacing `<` is what stops a future
@@ -37,10 +39,15 @@ const ld = jsonLd ? JSON.stringify(jsonLd).replace(/</g, '\\u003c') : undefined;
     <meta property="og:url" content={canonicalHref} />
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={SITE.name} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={imageHref} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={imageHref} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternate" type="application/rss+xml" href="/rss.xml" />
-    <link rel="icon" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <Font cssVariable="--font-instrument-sans" preload />
     <Font cssVariable="--font-instrument-serif" />
     <Font cssVariable="--font-ibm-plex-mono" />
