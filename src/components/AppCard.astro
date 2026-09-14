@@ -12,7 +12,9 @@ interface Props {
 const { app, layout } = Astro.props;
 
 const status = STATUS_META[app.data.status];
-const platformText = app.data.platforms.map((platform) => PLATFORM_LABELS[platform]).join(' · ');
+const platformText =
+  app.data.platforms.map((platform) => PLATFORM_LABELS[platform]).join(' · ') +
+  (app.data.platformNote ? ` · ${app.data.platformNote}` : '');
 const href = `/apps/${app.id}/`;
 ---
 

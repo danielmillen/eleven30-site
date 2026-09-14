@@ -7,7 +7,9 @@ description: >-
   line? Round the total up or down to something tidy, or split the check, and
   it works the arithmetic backwards. v2 is close.
 platforms: [ios]
+platformNote: Android coming soon
 status: released
+appStoreUrl: https://apps.apple.com/us/app/rachels-tip-calculator/id6450927533
 icon: receipt
 iconImage: /app-icons/rachels-tip-calculator.svg
 screenshot: /screenshots/rachels-tip-calculator.jpg

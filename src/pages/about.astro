@@ -28,19 +28,19 @@ import { elsewhere } from '../data/elsewhere';
           class="m-0 text-balance font-display font-semibold"
           style="font-size: clamp(30px, 5.6vw, var(--text-display-lg)); line-height: 1.08; letter-spacing: var(--ls-display-lg);"
         >
-          I'm [your name] — a solo developer in Florida, 25 years in.
+          I'm Dan Millen — a solo developer in Florida, 25 years in.
         </h1>
         <div class="mt-7 flex max-w-[62ch] flex-col gap-5 text-body-lg text-fg-muted">
           <p class="m-0">
             I've spent most of my career building software for other people — a quarter century of
             platforms, teams and roadmaps I didn't write. Eleven30 is the part I do for myself: a
-            small studio where I get to finish things properly instead of shipping the version that
-            fit the sprint.
+            collection of personal projects, built because I wanted them to exist.
           </p>
           <p class="m-0">
-            Both apps started as small irritations. The tip calculator came from a table, with a
-            pen, doing arithmetic I shouldn't have had to do. The launch app came from missing a
-            launch I could have watched from my own driveway.
+            Both apps started as small irritations. The tip calculator came from watching my wife
+            juggle two or three separate apps at the table — one with a full-screen ad standing
+            between her and the answer — just to work out what to write on the receipt. The launch
+            app came from missing a launch I could have watched from my own driveway.
           </p>
           <p class="m-0">Same instinct either way: do the arithmetic for the person, and show your work.</p>
           <p class="m-0">I answer the support email myself. There's no team behind the address.</p>
@@ -67,7 +67,13 @@ import { elsewhere } from '../data/elsewhere';
               elsewhere.map((e) => (
                 <div class="flex items-center gap-3">
                   <Icon name={e.icon} size={16} class="text-icon" />
-                  <span class="text-fg-muted">{e.label}</span>
+                  {e.href ? (
+                    <a href={e.href} class="text-fg-muted hover:text-fg">
+                      {e.label}
+                    </a>
+                  ) : (
+                    <span class="text-fg-muted">{e.label}</span>
+                  )}
                 </div>
               ))
             }

@@ -1,9 +1,12 @@
 ---
 appSlug: rachels-tip-calculator
 effectiveDate: 2026-08-28T00:00:00-04:00
-lastUpdated: 2026-08-28T00:00:00-04:00
-dataCollected: []
-thirdParties: []
+lastUpdated: 2026-09-13T00:00:00-04:00
+dataCollected: ['Advertiser ID (with permission)']
+thirdParties:
+  - name: Google AdMob
+    purpose: Serves the app's one ad; uses the advertiser ID (with permission) to personalize it and measure performance
+    policyUrl: https://policies.google.com/privacy
 childrenPolicy: false
 ---
 
@@ -15,9 +18,11 @@ If you contact support, I keep that email thread so I can help you — nothing m
 
 ## Analytics and ads
 
-No advertising SDKs, no third-party trackers, and no selling or sharing of data with data brokers.
+The app shows one ad, served through Google AdMob. AdMob is a third party, and — with your permission — it uses your device's advertiser ID to personalize that ad and measure how it performs. You can decline, and everything else in the app works exactly the same; you'll just see a less relevant ad.
 
-Nothing leaves the phone: there's no account, no analytics, and no receipts stored anywhere. If I ever add basic crash reporting, it will be listed here before it ships, and it won't include anything that identifies you.
+No other third-party trackers or SDKs, and no selling of your data for money.
+
+Nothing else leaves the phone: there's no account, and no receipts stored anywhere. If I ever add basic crash reporting, it will be listed here before it ships, and it won't include anything that identifies you.
 
 ## Deleting your data
 

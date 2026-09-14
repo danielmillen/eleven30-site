@@ -28,7 +28,9 @@ const CAPTION_STATUS: Record<AppEntry['data']['status'], string> = {
 
 const status = STATUS_META[app.data.status];
 const platformText = app.data.platforms.map((platform) => PLATFORM_LABELS[platform]).join(' · ');
-const captionLine = `${platformText} · ${CAPTION_STATUS[app.data.status]}`;
+const captionLine =
+  `${platformText} · ${CAPTION_STATUS[app.data.status]}` +
+  (app.data.platformNote ? ` · ${app.data.platformNote}` : '');
 
 /**
  * Primary CTA. Released apps with a real store URL link to it; everything
@@ -102,9 +104,17 @@ const Body = APP_BODIES[app.id];
         </h1>
         <p class="mt-5 max-w-[50ch] text-body-lg text-fg-muted">{app.data.tagline}</p>
         <p class="mt-4 max-w-[60ch] text-fg-muted">{app.data.description}</p>
-        <div class="mt-8 flex flex-wrap gap-3">
+        <div class="mt-8 flex flex-wrap items-center gap-3">
           {
-            primaryCta.href ? (
+            app.data.appStoreUrl ? (
+              <a href={app.data.appStoreUrl} aria-label="Download on the App Store">
+                <img
+                  src="/badges/app-store-badge.svg"
+                  alt="Download on the App Store"
+                  style="height: 52px; width: auto;"
+                />
+              </a>
+            ) : primaryCta.href ? (
               <Button size="lg" href={primaryCta.href}>
                 {primaryCta.label}
               </Button>
